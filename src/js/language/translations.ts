@@ -6,9 +6,12 @@ import type {
 export const TRANSLATIONS: Record<Language, Translations> = {
   de: {
     base: {
-      langSwitchAriaLabel: "Sprachauswahl"
+      langSwitchAriaLabel: "Sprachauswahl",
+      germanLanguage: "Deutsch",
+      englishLanguage: "Englisch"
     },
     home: {
+      eyebrow: "Es ist Spielzeit.",
       title: "Bereit zu spielen?",
       playButton: "Spielen"
     },
@@ -27,9 +30,12 @@ export const TRANSLATIONS: Record<Language, Translations> = {
 
   en: {
     base: {
-      langSwitchAriaLabel: "Language choice"
+      langSwitchAriaLabel: "Language choice",
+      germanLanguage: "German",
+      englishLanguage: "English"
     },
     home: {
+      eyebrow: "It’s play time.",
       title: "Ready to play?",
       playButton: "Play"
     },

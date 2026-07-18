@@ -7,7 +7,7 @@ export function renderSettingsPage(translation: Translations, language: Language
     return `
         <main>
 
-            ${renderLanguageSwitch(language)}
+            ${renderLanguageSwitch(language, translation)}
 
             <section>
                 <h1>${translation.settings.title}</h1>

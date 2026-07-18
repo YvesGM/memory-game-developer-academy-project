@@ -1,0 +1,40 @@
+@use "../abstracts/tokens" as tokens;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background-color: tokens.$color-primary-dark;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+
+  font-family: tokens.$font-family-body;
+  color: tokens.$color-white;
+  background-color: tokens.$color-primary-dark;
+}
+
+button {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+#app {
+  min-height: 100vh;
+}

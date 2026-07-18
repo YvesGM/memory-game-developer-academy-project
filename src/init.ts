@@ -1,4 +1,7 @@
-import "./assets/scss/main.scss"
+import "@fontsource/almarai/400.css";
+import "@fontsource/red-rose/700.css";
+
+import "./assets/scss/main.scss";
 
 import type { Route } from "./js/router/router-types";
 import type { Language } from "./js/language/language-types";

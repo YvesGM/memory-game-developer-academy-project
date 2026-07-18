@@ -1,19 +1,31 @@
-import type { Language } from "../language/language-types";
+import type { Language, Translations } from "../language/language-types";
 
-import { TRANSLATIONS } from "../language/translations";
+export function renderLanguageSwitch(currentLanguage: Language, translation: Translations): string {
+  return `
+    <nav class="language-switch" aria-label="${translation.base.langSwitchAriaLabel}">
+    
+      ${renderLanguageButton(
+    "de",
+    translation.base.germanLanguage,
+    currentLanguage
+  )}
 
-export function renderLanguageSwitch(currentLanguage: Language): string {
-    return `
-        <nav aria-label="${TRANSLATIONS[currentLanguage].base.langSwitchAriaLabel}">
+      <span class="language-switch__separator" aria-hidden="true">|</span>
 
-          <button type="button" data-language="de" aria-pressed="${currentLanguage === "de"}">
-            DE
-          </button>
+      ${renderLanguageButton(
+    "en",
+    translation.base.englishLanguage,
+    currentLanguage
+  )}
 
-          <button type="button" data-language="en" aria-pressed="${currentLanguage === "en"}">
-            EN
-          </button>
+    </nav>
+  `;
+}
 
-        </nav>
-    `;
+function renderLanguageButton(language: Language, label: string, currentLanguage: Language): string {
+  return `
+    <button class="language-switch__button" type="button" data-language="${language}" aria-pressed="${currentLanguage === language}">
+      ${label}
+    </button>
+  `;
 }

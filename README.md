@@ -1,6 +1,5 @@
 # Memory Game
 Ein responsives Memory-Spiel, das im Rahmen der Developer Akademie umgesetzt wird.
-
 Das Projekt basiert auf TypeScript, Vite und SCSS. Spieler können verschiedene Themes, Spielfeldgrößen und einen startenden Spieler auswählen. Zusätzlich unterstützt die Anwendung Deutsch und Englisch.
 
 ## Aktueller Entwicklungsstand
@@ -103,22 +102,26 @@ src/
 ├── assets/
 │   └── scss/
 │       └── main.scss
-├── components/
-│   └── language-switch.ts
-├── localization/
-│   ├── language-service.ts
-│   ├── language-types.ts
-│   └── translations.ts
-├── pages/
-│   ├── game-page.ts
-│   ├── home-page.ts
-│   └── settings-page.ts
-├── router/
-│   └── app-router.ts
-├── settings/
-│   ├── game-settings.ts
-│   ├── settings-form.ts
-│   └── settings-storage.ts
+│
+├── js/
+│   ├── components/
+│   │   └── language-switch.ts
+│   │
+│   ├── language/
+│   │   ├── language-service.ts
+│   │   ├── language-types.ts
+│   │   └── translations.ts
+│   │
+│   ├── router/
+│   │   ├── app-router.ts
+│   │   └── router-types.ts
+│   │
+│   └── settings/
+│       ├── game-setting-interfaces.ts
+│       ├── game-setting-storage.ts
+│       ├── game-setting-types.ts
+│       ├── game-settings-form.ts
+│       └── game-settings.ts
 └── init.ts
 ```
 

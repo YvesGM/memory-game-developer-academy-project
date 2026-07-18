@@ -1,15 +1,6 @@
-* {
-  box-sizing: border-box;
-}
+@use "./base/global";
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
+@use "./components/primary-button";
+@use "./components/language-switch";
 
-main {
-  display: grid;
-  place-items: center;
-
-  min-height: 100vh;
-}
+@use "./pages/home-page";
