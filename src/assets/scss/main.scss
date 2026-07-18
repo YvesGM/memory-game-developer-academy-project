@@ -2,5 +2,9 @@
 
 @use "./components/primary-button";
 @use "./components/language-switch";
+@use "./components/settings-options";
+@use "./components/theme-preview";
+@use "./components/settings-summary";
 
 @use "./pages/home-page";
+@use "./pages/settings-page";

@@ -94,6 +94,32 @@ function handleLanguageClick(event: MouseEvent): void {
     renderApp();
 }
 
+function handleSettingsChange(event: Event): void {
+    const target = event.target;
+
+    if (!(target instanceof HTMLInputElement)) {
+        return;
+    }
+
+    const form = target.closest<HTMLFormElement>(
+        "[data-settings-form]"
+    );
+
+    if (!form || target.type !== "radio") {
+        return;
+    }
+
+    const settings = readGameSettings(form);
+
+    if (!settings) {
+        return;
+    }
+
+    currentSettings = settings;
+    saveGameSettings(settings);
+    renderApp();
+}
+
 function handleSettingsSubmit(event: SubmitEvent): void {
     const form = event.target;
 
@@ -120,6 +146,7 @@ function handleSettingsSubmit(event: SubmitEvent): void {
 
 appRef.addEventListener("click", handleRouteClick);
 appRef.addEventListener("click", handleLanguageClick);
+appRef.addEventListener("change", handleSettingsChange);
 appRef.addEventListener("submit", handleSettingsSubmit);
 
 renderApp();

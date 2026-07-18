@@ -18,6 +18,20 @@ export interface Translations {
     boardSizeTitle: string;
     startButton: string;
     backButton: string;
+    codeTheme: string;
+    gamingTheme: string;
+    academyTheme: string;
+    foodTheme: string;
+    bluePlayer: string;
+    orangePlayer: string;
+    sixteenCards: string;
+    twentyFourCards: string;
+    thirtySixCards: string;
+    currentPlayer: string;
+    exitGame: string;
+    selectedTheme: string;
+    selectedPlayer: string;
+    selectedBoardSize: string;
   };
   game: {
     title: string;

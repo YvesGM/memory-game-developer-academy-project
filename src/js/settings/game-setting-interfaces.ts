@@ -5,3 +5,22 @@ export interface GameSettings {
   boardSize: BoardSize;
   theme: GameTheme;
 }
+
+export interface ThemePreviewConfig {
+  className: string;
+  assetFolder: string;
+}
+
+export interface SettingsOption {
+  value: string;
+  label: string;
+}
+
+export interface SettingsGroup {
+  name: string;
+  legend: string;
+  iconPath: string;
+  selectedValue: string;
+  options: SettingsOption[];
+  showSelectionMarker?: boolean;
+}
