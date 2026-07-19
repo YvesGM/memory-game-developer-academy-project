@@ -21,14 +21,16 @@
   width: min(33.6875rem, calc(100vw - 2rem));
   padding: 2.5rem;
 
-  color: tokens.$color-primary-dark;
-  background-color: tokens.$color-white;
+  font-family: inherit;
+  color: var(--dialog-text, #303131);
+  background-color: var(--dialog-background, #ffffff);
+  border-radius: var(--dialog-radius, 0);
 }
 
 .exit-dialog__title {
   margin: 0;
 
-  font-family: tokens.$font-family-heading;
+  font-family: inherit;
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.25;
@@ -47,32 +49,100 @@
   min-height: 3.3125rem;
   padding: 0.875rem 1.25rem;
 
-  font-family: tokens.$font-family-heading;
+  font-family: inherit;
   font-size: 1.25rem;
   font-weight: 700;
 
   cursor: pointer;
+  transition:
+    color tokens.$transition-fast ease,
+    background-color tokens.$transition-fast ease,
+    border-color tokens.$transition-fast ease;
 }
 
 .exit-dialog__button--back {
-  border: 0;
-  color: tokens.$color-white;
-  background-color: #66cfbc;
+  border: var(--dialog-back-border, 0);
+  color: var(--dialog-back-text, #ffffff);
+  background-color: var(--dialog-back-background, #66cfbc);
 }
 
 .exit-dialog__button--confirm {
-  border: 0.125rem solid #4dd5bc;
-  color: #4dd5bc;
+  border: 0.125rem solid var(--dialog-confirm-color, #4dd5bc);
+  color: var(--dialog-confirm-color, #4dd5bc);
   background-color: transparent;
 }
 
+.exit-dialog__button--back:hover,
+.exit-dialog__button--back:focus-visible {
+  color: var(--dialog-back-hover-text, var(--dialog-background));
+  background-color: var(--dialog-back-hover-background, var(--dialog-confirm-color));
+}
+
+.exit-dialog__button--confirm:hover,
+.exit-dialog__button--confirm:focus-visible {
+  color: var(--dialog-confirm-hover-text, var(--dialog-background));
+  background-color: var(--dialog-confirm-color);
+}
+
 .exit-dialog__button:focus-visible {
-  outline: 0.1875rem solid tokens.$color-primary-dark;
+  outline: 0.1875rem solid var(--dialog-focus-color, var(--dialog-text));
   outline-offset: 0.1875rem;
 }
 
 .is-dialog-open {
   overflow: hidden;
+}
+
+/*
+ * Code
+ */
+
+.game-page--code {
+  --dialog-background: #ffffff;
+  --dialog-text: #303131;
+  --dialog-back-background: #66cfbc;
+  --dialog-back-text: #ffffff;
+  --dialog-confirm-color: #4dd5bc;
+  --dialog-radius: 0;
+}
+
+/*
+ * Gaming
+ */
+
+.game-page--gaming {
+  --dialog-background: #edf4f7;
+  --dialog-text: #28576b;
+  --dialog-back-background: #ef1680;
+  --dialog-back-text: #ffffff;
+  --dialog-confirm-color: #ef1680;
+  --dialog-radius: 1rem;
+}
+
+/*
+ * Developer Academy
+ */
+
+.game-page--academy {
+  --dialog-background: #edf6fa;
+  --dialog-text: #28576b;
+  --dialog-back-background: #b8e4f2;
+  --dialog-back-text: #167da6;
+  --dialog-confirm-color: #ff8585;
+  --dialog-radius: 1rem;
+}
+
+/*
+ * Food
+ */
+
+.game-page--food {
+  --dialog-background: #ffffff;
+  --dialog-text: #c35c19;
+  --dialog-back-background: #ff9b3d;
+  --dialog-back-text: #ffffff;
+  --dialog-confirm-color: #ff8129;
+  --dialog-radius: 1rem;
 }
 
 @media (max-width: 560px) {

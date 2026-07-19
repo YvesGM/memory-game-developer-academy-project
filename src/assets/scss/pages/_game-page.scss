@@ -18,6 +18,10 @@
   background-color: var(--game-background);
 }
 
+.game-page--code {
+  font-family: tokens.$font-family-code;
+}
+
 .game-page--gaming {
   font-family: tokens.$font-family-gaming;
   --game-background: #28657d;
@@ -28,7 +32,7 @@
 
 .game-page--academy {
   font-family: tokens.$font-family-academy;
-  --game-background: #b8e4f2;
+  --game-background: #ffffff;
   --game-accent: #167da6;
   --game-score-background: rgb(255 255 255 / 65%);
   --game-text: #167da6;
@@ -38,11 +42,23 @@
 .game-page--food {
   font-family: tokens.$font-family-food;
   font-weight: 400;
-  --game-background: #eee6de;
+  --game-background: #ffffff;
   --game-accent: #ff8129;
   --game-score-background: rgb(255 255 255 / 75%);
   --game-text: #303131;
   --game-match-color: #ff8129;
+}
+
+.game-page--academy .game-header {
+  padding: 1rem 1.5rem;
+  background-color: #edf6fa;
+  border-radius: 0.75rem;
+}
+
+.game-page--food .game-header {
+  padding: 1rem 1.5rem;
+  background-color: #eee6de;
+  border-radius: 0.75rem;
 }
 
 .game-page__content {
@@ -74,7 +90,7 @@
 
   padding: 1.0625rem 1.25rem;
 
-  font-family: tokens.$font-family-heading;
+  font-family: inherit;
   font-size: 1.5rem;
   font-weight: 700;
 
@@ -123,7 +139,7 @@
   align-items: center;
   gap: 0.5rem;
 
-  font-family: tokens.$font-family-heading;
+  font-family: inherit;
   font-size: 1.625rem;
 }
 
@@ -139,7 +155,7 @@
 
   border: 0.0625rem solid var(--game-accent);
 
-  font-family: tokens.$font-family-heading;
+  font-family: inherit;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--game-text);
@@ -268,8 +284,8 @@
   cursor: default;
 }
 
-.game-header__score,
-.game-current-player,
+.game-score,
+.game-header__current-player,
 .game-exit-button,
 .end-screen__winner-name,
 .end-screen__draw-title,
@@ -277,8 +293,8 @@
   font-weight: 700;
 }
 
-.game-page--food .game-header__score,
-.game-page--food .game-current-player,
+.game-page--food .game-score,
+.game-page--food .game-header__current-player,
 .game-page--food .game-exit-button,
 .game-page--food .end-screen__winner-name,
 .game-page--food .end-screen__draw-title {

@@ -1,5 +1,6 @@
 import type { GameState, MemoryCard } from "./game-interfaces";
-import type { CardStatus, GamePhase, GameResult } from "./game-types"; import type { GameSettings } from "../settings/game-setting-interfaces";
+import type { CardStatus, GamePhase, GameResult } from "./game-types"; 
+import type { GameSettings } from "../settings/game-setting-interfaces";
 
 import { isBoardSize, isGameTheme, isPlayerId } from "../settings/game-setting-guards";
 import { createInitialGameState } from "./game-state";
