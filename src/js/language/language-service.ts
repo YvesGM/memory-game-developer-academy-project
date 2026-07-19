@@ -1,9 +1,6 @@
-import { TRANSLATIONS } from "./translations";
+import type { Language, Translations } from "./language-types";
 
-import type {
-  Language,
-  Translations
-} from "./language-types";
+import { TRANSLATIONS } from "./translations";
 
 const LANGUAGE_STORAGE_KEY = "memory-game-language";
 const DEFAULT_LANGUAGE: Language = "de";

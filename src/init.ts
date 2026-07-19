@@ -6,11 +6,16 @@ import "./assets/scss/main.scss";
 import type { Route } from "./js/router/router-types";
 import type { Language } from "./js/language/language-types";
 import type { GameSettings } from "./js/settings/game-setting-interfaces";
+import type { GameState } from "./js/game/game-interfaces";
 
 import { renderRoute } from "./js/router/app-router";
 import { getTranslation, isLanguage, loadLanguage, saveLanguage } from "./js/language/language-service";
 import { readGameSettings } from "./js/settings/game-settings-form";
 import { saveGameSettings, loadGameSettings } from "./js/settings/game-setting-storage";
+import { addPointToActivePlayer, addSelectedCard, flipCard, getSelectedCards, hideSelectedCards, lockBoard, markSelectedCardsAsMatched, createInitialGameState } from "./js/game/game-state";
+import { clearGameState, loadGameState, saveGameState } from "./js/game/game-state-storage";
+
+import { CARD_FLIP_BACK_DELAY, CARD_FLIP_DURATION, MAX_SELECTED_CARDS } from "./js/game/game-constants";
 
 const ROUTE_STORAGE_KEY = "memory-game-route";
 const HOME_ROUTE: Route = "home";
@@ -21,6 +26,7 @@ const appRef = getAppElement();
 let currentRoute: Route = loadRoute();
 let currentLanguage: Language = loadLanguage();
 let currentSettings: GameSettings = loadGameSettings();
+let currentGameState: GameState = loadGameState(currentSettings);
 
 function getAppElement(): HTMLElement {
     const appRef = document.getElementById("app");
@@ -42,13 +48,6 @@ function isRoute(value: string | null): value is Route {
     return value === HOME_ROUTE
         || value === SETTINGS_ROUTE
         || value === "game";
-}
-
-function renderApp(): void {
-    const translation = getTranslation(currentLanguage);
-
-    document.documentElement.lang = currentLanguage;
-    appRef.innerHTML = renderRoute(currentRoute, translation, currentLanguage, currentSettings);
 }
 
 function navigateTo(route: Route): void {
@@ -140,13 +139,243 @@ function handleSettingsSubmit(event: SubmitEvent): void {
     }
 
     currentSettings = settings;
+    currentGameState = createInitialGameState(settings);
+
     saveGameSettings(settings);
+    saveGameState(currentGameState);
+
     navigateTo("game");
 }
 
-appRef.addEventListener("click", handleRouteClick);
-appRef.addEventListener("click", handleLanguageClick);
-appRef.addEventListener("change", handleSettingsChange);
-appRef.addEventListener("submit", handleSettingsSubmit);
+function handleGameCardClick(event: MouseEvent): void {
+    const target = event.target;
 
-renderApp();
+    if (!(target instanceof Element)) {
+        return;
+    }
+
+    const cardButton = target.closest<HTMLButtonElement>(
+        "[data-card-id]"
+    );
+
+    if (!cardButton) {
+        return;
+    }
+
+    handleCardSelection(cardButton);
+}
+
+function handleCardSelection(cardButton: HTMLButtonElement): void {
+    const cardId = cardButton.dataset.cardId;
+
+    if (!cardId || !canSelectCard(cardId)) {
+        return;
+    }
+
+    animateCardFlip(cardButton);
+    updateSelectedCardState(cardId);
+    evaluateSelectionAfterFlip();
+}
+
+function animateCardFlip(cardButton: HTMLButtonElement): void {
+    cardButton.classList.add("memory-card--flipped");
+    cardButton.setAttribute("aria-pressed", "true");
+}
+
+function updateSelectedCardState(cardId: string): void {
+    currentGameState = flipCard(currentGameState, cardId);
+    currentGameState = addSelectedCard(currentGameState, cardId);
+    saveStableGameState();
+}
+
+function evaluateSelectionAfterFlip(): void {
+    if (currentGameState.selectedCardIds.length !== MAX_SELECTED_CARDS) {
+        return;
+    }
+    currentGameState = lockBoard(currentGameState);
+    window.setTimeout(evaluateSelectedCards, CARD_FLIP_DURATION);
+}
+
+function saveStableGameState(): void {
+    const selectedCount =
+        currentGameState.selectedCardIds.length;
+
+    if (selectedCount <= 1) {
+        saveGameState(currentGameState);
+    }
+}
+
+function canSelectCard(cardId: string): boolean {
+    if (currentGameState.isBoardLocked) {
+        return false;
+    }
+
+    if (
+        currentGameState.selectedCardIds.length
+        >= MAX_SELECTED_CARDS
+    ) {
+        return false;
+    }
+
+    const card = currentGameState.cards.find(
+        (gameCard) => gameCard.id === cardId
+    );
+
+    return card?.status === "hidden";
+}
+
+function evaluateSelectedCards(): void {
+    const selectedCards = getSelectedCards(
+        currentGameState
+    );
+
+    if (selectedCards.length !== MAX_SELECTED_CARDS) {
+        return;
+    }
+
+    const isMatch = selectedCards[0].pairId === selectedCards[1].pairId;
+
+    if (isMatch) {
+        handleMatchedPair();
+        return;
+    }
+
+    window.setTimeout(handleMismatchedPair, CARD_FLIP_BACK_DELAY);
+}
+
+function handleMatchedPair(): void {
+    currentGameState = addPointToActivePlayer(
+        currentGameState
+    );
+
+    currentGameState = markSelectedCardsAsMatched(
+        currentGameState
+    );
+
+    saveGameState(currentGameState);
+    renderApp();
+}
+
+function handleMismatchedPair(): void {
+    const selectedIds = [
+        ...currentGameState.selectedCardIds
+    ];
+
+    currentGameState = hideSelectedCards(
+        currentGameState
+    );
+
+    saveGameState(currentGameState);
+    animateCardsToBack(selectedIds);
+
+    window.setTimeout(
+        renderApp,
+        CARD_FLIP_DURATION
+    );
+}
+
+function animateCardsToBack(cardIds: string[]): void {
+    cardIds.forEach((cardId) => {
+        const cardButton = getCardButton(cardId);
+
+        if (!cardButton) {
+            return;
+        }
+
+        cardButton.classList.remove("memory-card--flipped");
+        cardButton.setAttribute("aria-pressed", "false");
+    });
+}
+
+function getCardButton(cardId: string): HTMLButtonElement | null {
+    return appRef.querySelector<HTMLButtonElement>(
+        `[data-card-id="${cardId}"]`
+    );
+}
+
+function handleGameDialogClick(event: MouseEvent): void {
+    const target = event.target;
+
+    if (!(target instanceof Element)) {
+        return;
+    }
+
+    if (target.closest("[data-open-exit-dialog]")) {
+        openExitDialog();
+        return;
+    }
+
+    if (target.closest("[data-close-exit-dialog]")) {
+        closeExitDialog();
+        return;
+    }
+
+    if (target.closest("[data-confirm-exit]")) {
+        exitCurrentGame();
+    }
+}
+
+function openExitDialog(): void {
+    const dialog = getExitDialog();
+
+    if (!dialog) {
+        return;
+    }
+
+    dialog.hidden = false;
+    document.body.classList.add("is-dialog-open");
+}
+
+function closeExitDialog(): void {
+    const dialog = getExitDialog();
+
+    if (!dialog) {
+        return;
+    }
+
+    dialog.hidden = true;
+    document.body.classList.remove("is-dialog-open");
+}
+
+function exitCurrentGame(): void {
+    clearGameState();
+
+    currentGameState = createInitialGameState(
+        currentSettings
+    );
+
+    document.body.classList.remove(
+        "is-dialog-open"
+    );
+
+    navigateTo("settings");
+}
+
+function getExitDialog(): HTMLElement | null {
+    return appRef.querySelector<HTMLElement>(
+        "[data-exit-dialog]"
+    );
+}
+
+function renderApp(): void {
+    const translation = getTranslation(currentLanguage);
+
+    document.documentElement.lang = currentLanguage;
+    appRef.innerHTML = renderRoute(currentRoute, translation, currentLanguage, currentSettings, currentGameState);
+}
+
+function initListener() {
+    appRef.addEventListener("click", handleRouteClick);
+    appRef.addEventListener("click", handleLanguageClick);
+    appRef.addEventListener("click", handleGameDialogClick);
+    appRef.addEventListener("click", handleGameCardClick);
+    appRef.addEventListener("change", handleSettingsChange);
+    appRef.addEventListener("submit", handleSettingsSubmit);
+}
+
+function init() {
+    initListener();
+    renderApp();
+}
+
+init();

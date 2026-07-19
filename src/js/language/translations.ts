@@ -38,7 +38,17 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       selectedBoardSize: "Spielfeld"
     },
     game: {
-      title: "Memory Spiel"
+      title: "Memory Spiel",
+      currentPlayer: "Aktueller Spieler:",
+      exitGame: "Spiel verlassen",
+      bluePlayer: "Blauer Spieler",
+      orangePlayer: "Oranger Spieler",
+      hiddenCardLabel: "Verdeckte Memory-Karte",
+      flippedCardLabel: "Aufgedeckte Memory-Karte",
+      matchedCardLabel: "Gefundenes Memory-Paar",
+      exitDialogTitle: "Möchtest du das Spiel verlassen?",
+      backToGame: "Zurück zum Spiel",
+      confirmExit: "Spiel verlassen"
     }
   },
 
@@ -76,7 +86,17 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       selectedBoardSize: "Board size"
     },
     game: {
-      title: "Memory Game"
+      title: "Memory Game",
+      currentPlayer: "Current player:",
+      exitGame: "Exit game",
+      bluePlayer: "Blue player",
+      orangePlayer: "Orange player",
+      hiddenCardLabel: "Hidden memory card",
+      flippedCardLabel: "Revealed memory card",
+      matchedCardLabel: "Matched memory card",
+      exitDialogTitle: "Do you want to leave the game?",
+      backToGame: "Back to game",
+      confirmExit: "Exit game"
     }
   }
 };

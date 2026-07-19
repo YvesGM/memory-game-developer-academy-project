@@ -35,5 +35,15 @@ export interface Translations {
   };
   game: {
     title: string;
+    currentPlayer: string;
+    exitGame: string;
+    bluePlayer: string;
+    orangePlayer: string;
+    hiddenCardLabel: string;
+    flippedCardLabel: string;
+    matchedCardLabel: string;
+    exitDialogTitle: string;
+    backToGame: string;
+    confirmExit: string;
   };
 }
