@@ -1,5 +1,5 @@
 import type { BoardSize, GameTheme, PlayerId } from "../settings/game-setting-types";
-import type { CardStatus } from "./game-types";
+import type { CardStatus, GamePhase, GameResult } from "./game-types";
 
 export interface MemoryCard {
   id: string;
@@ -21,6 +21,8 @@ export interface GameState {
   scores: PlayerScores;
   selectedCardIds: string[];
   isBoardLocked: boolean;
+  phase: GamePhase;
+  result: GameResult;
 }
 
 export interface BoardConfig {
@@ -35,4 +37,19 @@ export interface ThemeCardAssets {
   exitIconPath: string;
   exitHoverIconPath: string;
   cardFrontPaths: string[];
+}
+
+export interface WinnerAssets {
+  bluePlayerImagePath: string;
+  orangePlayerImagePath: string;
+  confettiImagePath: string | null;
+}
+
+export interface DrawAssets {
+  scaleImagePath: string;
+}
+
+export interface EndScreenAssets {
+  winner: WinnerAssets;
+  draw: DrawAssets;
 }

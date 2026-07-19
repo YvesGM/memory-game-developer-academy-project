@@ -1,6 +1,5 @@
 import type { GameState, MemoryCard } from "./game-interfaces";
-import type { CardStatus } from "./game-types";
-import type { GameSettings } from "../settings/game-setting-interfaces";
+import type { CardStatus, GamePhase, GameResult } from "./game-types"; import type { GameSettings } from "../settings/game-setting-interfaces";
 
 import { isBoardSize, isGameTheme, isPlayerId } from "../settings/game-setting-guards";
 import { createInitialGameState } from "./game-state";
@@ -46,7 +45,9 @@ function isValidGameState(value: unknown, settings: GameSettings): value is Game
     return hasValidBaseState(value, settings)
         && hasValidScores(value.scores)
         && hasValidCards(value.cards, settings)
-        && hasValidSelectedCards(value);
+        && hasValidSelectedCards(value)
+        && isGamePhase(value.phase)
+        && isGameResult(value.result);
 }
 
 function hasValidBaseState(value: Record<string, unknown>, settings: GameSettings): boolean {
@@ -99,6 +100,19 @@ function isCardStatus(value: unknown): value is CardStatus {
     return value === "hidden"
         || value === "flipped"
         || value === "matched";
+}
+
+function isGamePhase(value: unknown): value is GamePhase {
+    return value === "playing"
+        || value === "game-over"
+        || value === "result";
+}
+
+function isGameResult(value: unknown): value is GameResult {
+    return value === null
+        || value === "blue"
+        || value === "orange"
+        || value === "draw";
 }
 
 function hasUniqueCardIds(cards: MemoryCard[]): boolean {

@@ -9,6 +9,8 @@
   --game-board-gap: 0.75rem;
   --game-match-color: #4dd5bc;
 
+  font-weight: 400;
+
   min-height: 100vh;
   min-height: 100svh;
 
@@ -17,6 +19,7 @@
 }
 
 .game-page--gaming {
+  font-family: tokens.$font-family-gaming;
   --game-background: #28657d;
   --game-accent: #ef1680;
   --game-score-background: rgb(95 105 134 / 65%);
@@ -24,6 +27,7 @@
 }
 
 .game-page--academy {
+  font-family: tokens.$font-family-academy;
   --game-background: #b8e4f2;
   --game-accent: #167da6;
   --game-score-background: rgb(255 255 255 / 65%);
@@ -32,6 +36,8 @@
 }
 
 .game-page--food {
+  font-family: tokens.$font-family-food;
+  font-weight: 400;
   --game-background: #eee6de;
   --game-accent: #ff8129;
   --game-score-background: rgb(255 255 255 / 75%);
@@ -235,7 +241,7 @@
 
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  
+
   transition:
     border-color 200ms ease,
     box-shadow 200ms ease;
@@ -260,6 +266,23 @@
 
 .memory-card:disabled {
   cursor: default;
+}
+
+.game-header__score,
+.game-current-player,
+.game-exit-button,
+.end-screen__winner-name,
+.end-screen__draw-title,
+.end-screen__game-over-title {
+  font-weight: 700;
+}
+
+.game-page--food .game-header__score,
+.game-page--food .game-current-player,
+.game-page--food .game-exit-button,
+.game-page--food .end-screen__winner-name,
+.game-page--food .end-screen__draw-title {
+  font-weight: 600;
 }
 
 @media (max-width: 900px) {

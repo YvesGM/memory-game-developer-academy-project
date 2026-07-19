@@ -48,7 +48,13 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       matchedCardLabel: "Gefundenes Memory-Paar",
       exitDialogTitle: "Möchtest du das Spiel verlassen?",
       backToGame: "Zurück zum Spiel",
-      confirmExit: "Spiel verlassen"
+      confirmExit: "Spiel verlassen",
+      gameOver: "Spiel beendet",
+      finalScore: "Endstand",
+      winnerIs: "Gewonnen hat",
+      drawIntro: "Es ist ein",
+      drawTitle: "UNENTSCHIEDEN",
+      backToStart: "Zurück zum Start"
     }
   },
 
@@ -96,7 +102,13 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       matchedCardLabel: "Matched memory card",
       exitDialogTitle: "Do you want to leave the game?",
       backToGame: "Back to game",
-      confirmExit: "Exit game"
+      confirmExit: "Exit game",
+      gameOver: "Game over",
+      finalScore: "Final score",
+      winnerIs: "The winner is",
+      drawIntro: "It’s a",
+      drawTitle: "DRAW",
+      backToStart: "Back to start"
     }
   }
 };

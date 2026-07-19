@@ -1,8 +1,22 @@
+// FONTS
 import "@fontsource/almarai/400.css";
+
 import "@fontsource/red-rose/700.css";
 
+import "@fontsource/orbitron/400.css";
+import "@fontsource/orbitron/700.css";
+
+import "@fontsource/figtree/400.css";
+import "@fontsource/figtree/600.css";
+import "@fontsource/figtree/700.css";
+
+import "@fontsource/klee-one/400.css";
+import "@fontsource/klee-one/600.css";
+
+// SCSS
 import "./assets/scss/main.scss";
 
+// TS
 import type { Route } from "./js/router/router-types";
 import type { Language } from "./js/language/language-types";
 import type { GameSettings } from "./js/settings/game-setting-interfaces";
@@ -12,10 +26,10 @@ import { renderRoute } from "./js/router/app-router";
 import { getTranslation, isLanguage, loadLanguage, saveLanguage } from "./js/language/language-service";
 import { readGameSettings } from "./js/settings/game-settings-form";
 import { saveGameSettings, loadGameSettings } from "./js/settings/game-setting-storage";
-import { addPointToActivePlayer, addSelectedCard, flipCard, getSelectedCards, hideSelectedCards, lockBoard, markSelectedCardsAsMatched, createInitialGameState } from "./js/game/game-state";
+import { addPointToActivePlayer, addSelectedCard, createInitialGameState, flipCard, getSelectedCards, hideSelectedCards, isGameFinished, lockBoard, markSelectedCardsAsMatched, showGameOver, showGameResult } from "./js/game/game-state";
 import { clearGameState, loadGameState, saveGameState } from "./js/game/game-state-storage";
 
-import { CARD_FLIP_BACK_DELAY, CARD_FLIP_DURATION, MAX_SELECTED_CARDS } from "./js/game/game-constants";
+import { CARD_FLIP_BACK_DELAY, CARD_FLIP_DURATION, GAME_OVER_DURATION, MAX_SELECTED_CARDS } from "./js/game/game-constants";
 
 const ROUTE_STORAGE_KEY = "memory-game-route";
 const HOME_ROUTE: Route = "home";
@@ -244,11 +258,24 @@ function evaluateSelectedCards(): void {
 }
 
 function handleMatchedPair(): void {
-    currentGameState = addPointToActivePlayer(
-        currentGameState
-    );
+    currentGameState = addPointToActivePlayer(currentGameState);
+    currentGameState = markSelectedCardsAsMatched(currentGameState);
 
-    currentGameState = markSelectedCardsAsMatched(
+    if (!isGameFinished(currentGameState)) {
+        saveGameState(currentGameState);
+        renderApp();
+        return;
+    }
+
+    currentGameState = showGameOver(currentGameState);
+
+    saveGameState(currentGameState);
+    renderApp();
+    window.setTimeout(revealGameResult, GAME_OVER_DURATION);
+}
+
+function revealGameResult(): void {
+    currentGameState = showGameResult(
         currentGameState
     );
 
@@ -291,6 +318,26 @@ function getCardButton(cardId: string): HTMLButtonElement | null {
     return appRef.querySelector<HTMLButtonElement>(
         `[data-card-id="${cardId}"]`
     );
+}
+
+function handleEndScreenClick(event: MouseEvent): void {
+    const target = event.target;
+
+    if (!(target instanceof Element)) {
+        return;
+    }
+
+    const button = target.closest<HTMLButtonElement>(
+        "[data-end-screen-home]"
+    );
+
+    if (!button) {
+        return;
+    }
+
+    clearGameState();
+    currentGameState = createInitialGameState(currentSettings);
+    navigateTo(HOME_ROUTE);
 }
 
 function handleGameDialogClick(event: MouseEvent): void {
@@ -369,6 +416,7 @@ function initListener() {
     appRef.addEventListener("click", handleLanguageClick);
     appRef.addEventListener("click", handleGameDialogClick);
     appRef.addEventListener("click", handleGameCardClick);
+    appRef.addEventListener("click", handleEndScreenClick);
     appRef.addEventListener("change", handleSettingsChange);
     appRef.addEventListener("submit", handleSettingsSubmit);
 }

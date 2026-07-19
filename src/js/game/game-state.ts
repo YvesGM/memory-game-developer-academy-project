@@ -11,7 +11,9 @@ export function createInitialGameState(settings: GameSettings): GameState {
     cards: createGameBoard(settings.theme, settings.boardSize),
     scores: { blue: 0, orange: 0 },
     selectedCardIds: [],
-    isBoardLocked: false
+    isBoardLocked: false,
+    phase: "playing",
+    result: null
   };
 }
 
@@ -90,6 +92,43 @@ export function getSelectedCards(state: GameState): MemoryCard[] {
     .filter((card): card is MemoryCard => {
       return card !== undefined;
     });
+}
+
+export function isGameFinished(state: GameState): boolean {
+  return state.cards.every((card) => {
+    return card.status === "matched";
+  });
+}
+
+export function showGameOver(state: GameState): GameState {
+  return {
+    ...state,
+    phase: "game-over",
+    isBoardLocked: true,
+    selectedCardIds: []
+  };
+}
+
+export function showGameResult(state: GameState): GameState {
+  return {
+    ...state,
+    phase: "result",
+    result: determineGameResult(state.scores),
+    isBoardLocked: true,
+    selectedCardIds: []
+  };
+}
+
+function determineGameResult(scores: GameState["scores"]): GameState["result"] {
+  if (scores.blue > scores.orange) {
+    return "blue";
+  }
+
+  if (scores.orange > scores.blue) {
+    return "orange";
+  }
+
+  return "draw";
 }
 
 function updateCardStatus(state: GameState, cardId: string, status: MemoryCard["status"]): GameState {

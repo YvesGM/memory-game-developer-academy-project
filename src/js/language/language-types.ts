@@ -45,5 +45,12 @@ export interface Translations {
     exitDialogTitle: string;
     backToGame: string;
     confirmExit: string;
+
+    gameOver: string;
+    finalScore: string;
+    winnerIs: string;
+    drawIntro: string;
+    drawTitle: string;
+    backToStart: string;
   };
 }
