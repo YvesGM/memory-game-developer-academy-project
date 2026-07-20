@@ -12,6 +12,7 @@ import "@fontsource/figtree/700.css";
 
 import "@fontsource/klee-one/400.css";
 import "@fontsource/klee-one/600.css";
+import "@fontsource/delius-unicase/700.css";
 
 // SCSS
 import "./assets/scss/main.scss";

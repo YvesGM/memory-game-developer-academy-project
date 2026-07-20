@@ -3,10 +3,11 @@
 .settings-summary {
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
   gap: 1rem;
 
   width: 100%;
-  min-height: 5.0625rem;
+  min-height: 68px;
   padding: 0.875rem 1.25rem;
 
   color: tokens.$color-primary-dark;
@@ -36,8 +37,7 @@
   justify-content: center;
   gap: 0.5rem;
 
-  min-height: 3.3125rem;
-  margin-left: auto;
+  min-height: 2.75rem;
   padding: 0.875rem 1.25rem;
 
   border: 0;
@@ -73,7 +73,7 @@
   }
 
   .settings-summary__divider {
-    height: 2rem;
+    height: 3rem;
   }
 
   .settings-summary__start-button {

@@ -1,80 +1,81 @@
 @use "../abstracts/tokens" as tokens;
 
 .home-page {
-  position: relative;
-  isolation: isolate;
-
   display: grid;
   align-items: center;
 
+  position: relative;
+  isolation: isolate;
+
   min-height: 100vh;
-  min-height: 100svh;
-  overflow: hidden;
 
   background-color: tokens.$color-primary-dark;
-}
+  overflow: hidden;
 
-.home-page__content {
-  position: relative;
-  z-index: 1;
+  &__content {
+    z-index: 1;
 
-  width: min(68.8125rem, calc(100% - 3rem));
-  margin-inline: auto;
-  padding-block: clamp(4rem, 10vh, 8rem);
-}
+    width: min(68.8125rem, calc(100% - 3rem));
+    margin-inline: auto;
+    padding-block: clamp(4rem, 10vh, 8rem);
+  }
 
-.home-page__heading {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.5rem, 1.5vw, 1.25rem);
-}
+  &__heading {
+    display: flex;
+    flex-direction: column;
 
-.home-page__eyebrow {
-  margin: 0;
+    gap: clamp(0.5rem, 1.5vw, 1.25rem);
+  }
 
-  font-family: tokens.$font-family-body;
-  font-size: clamp(1.25rem, 3.33vw, 3rem);
-  font-weight: 400;
-  line-height: 1;
-  color: tokens.$color-white;
-}
+  &__eyebrow {
+    font-family: tokens.$font-family-body;
+    font-size: clamp(1.25rem, 3.33vw, 3rem);
+    font-weight: 400;
+    line-height: 1;
 
-.home-page__title {
-  max-width: 62rem;
-  margin: 0;
+    margin: 0;
 
-  font-family: tokens.$font-family-heading;
-  font-size: clamp(3.25rem, 9.72vw, 8.75rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0;
-  color: tokens.$color-white;
-}
+    color: tokens.$color-white;
+  }
 
-.home-page__actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(1rem, 2vw, 1.5rem);
+  &__title {
+    font-family: tokens.$font-family-heading;
+    font-size: clamp(3.25rem, 9.72vw, 8.75rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0;
 
-  width: fit-content;
-  margin-top: clamp(2rem, 5vw, 4.5rem);
-  margin-inline: auto;
-}
+    max-width: 62rem;
+    margin: 0;
 
-.home-page__controller {
-  position: absolute;
-  z-index: 0;
-  bottom: clamp(-8rem, -5vw, -3rem);
-  left: clamp(-5rem, -2vw, -1rem);
+    color: tokens.$color-white;
+  }
 
-  width: clamp(15rem, 28vw, 22.6875rem);
-  height: auto;
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  pointer-events: none;
-  user-select: none;
+    width: fit-content;
+    margin-top: clamp(2rem, 5vw, 4.5rem);
+    margin-inline: auto;
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
 
-  animation: controller-float 5.5s ease-in-out infinite;
+  &__controller {
+    position: absolute;
+    left: clamp(-5rem, -2vw, -1rem);
+    bottom: clamp(-8rem, -5vw, -3rem);
+    z-index: 0;
+
+    width: clamp(15rem, 28vw, 22.6875rem);
+    height: auto;
+
+    pointer-events: none;
+    user-select: none;
+
+    animation: controller-float 5.5s ease-in-out infinite;
+  }
 }
 
 @keyframes controller-float {
@@ -91,50 +92,54 @@
 @media (max-width: tokens.$breakpoint-tablet) {
   .home-page {
     align-items: center;
-  }
 
-  .home-page__content {
-    width: min(100% - 2rem, 37.5rem);
-    text-align: center;
-  }
+    &__content {
+      width: min(100% - 2rem, 37.5rem);
+      text-align: center;
+    }
 
-  .home-page__heading {
-    align-items: center;
-  }
+    &__heading {
+      align-items: center;
+    }
 
-  .home-page__actions {
-    margin-top: 2.5rem;
-  }
+    &__actions {
+      margin-top: 2.5rem;
+    }
 
-  .home-page__controller {
-    bottom: -6rem;
-    left: -6rem;
-    width: 16rem;
+    &__controller {
+      bottom: -6rem;
+      left: -6rem;
+      width: 16rem;
+    }
   }
 }
 
 @media (max-width: 480px) {
-  .home-page__content {
-    padding-block: 3rem 8rem;
-  }
+  .home-page {
+    &__content {
+      padding-block: 3rem 8rem;
+    }
 
-  .home-page__title {
-    font-size: clamp(2.75rem, 15vw, 4rem);
-  }
+    &__title {
+      font-size: clamp(2.75rem, 15vw, 4rem);
+    }
 
-  .home-page__eyebrow {
-    font-size: 1.125rem;
-  }
+    &__eyebrow {
+      font-size: 1.125rem;
+    }
 
-  .home-page__controller {
-    bottom: -5rem;
-    left: -7rem;
-    width: 15rem;
+    &__controller {
+      bottom: -5rem;
+      left: -7rem;
+      width: 15rem;
+    }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .home-page__controller {
-    animation: none;
+  .home-page {
+    &__controller {
+      animation: none;
+    }
   }
 }

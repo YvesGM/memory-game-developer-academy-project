@@ -5,38 +5,50 @@
   margin: 0;
   padding: 0;
   border: 0;
+
+  &__legend {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    margin-bottom: 0.75rem;
+    padding: 0;
+
+    font-family: tokens.$font-family-body;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: tokens.$color-primary-dark;
+  }
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-left: 2.75rem;
+  }
+
+  &:nth-child(1) &__icon {
+    color: tokens.$color-theme-pink;
+  }
+
+  &:nth-child(2) &__icon {
+    color: tokens.$color-player-green;
+  }
+
+  &:nth-child(3) &__icon {
+    color: tokens.$color-board-blue;
+  }
 }
 
 .settings-group + .settings-group {
   margin-top: 3.375rem;
-}
-
-.settings-group__legend {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  margin-bottom: 0.75rem;
-  padding: 0;
-
-  font-family: tokens.$font-family-body;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1;
-  color: tokens.$color-primary-dark;
-}
-
-.settings-group__icon {
-  width: 2rem;
-  height: 2rem;
-  object-fit: contain;
-}
-
-.settings-group__options {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding-left: 2.75rem;
 }
 
 .settings-option {
@@ -53,82 +65,68 @@
   font-size: 1.25rem;
   line-height: 1.2;
   color: tokens.$color-primary-dark;
+  white-space: nowrap;
 
   cursor: pointer;
-}
 
-.settings-option__input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
-  pointer-events: none;
-}
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
 
-.settings-option__radio {
-  position: relative;
+  &__radio {
+    position: relative;
 
-  flex: 0 0 auto;
-  width: 1rem;
-  height: 1rem;
+    flex: 0 0 auto;
+    width: 1rem;
+    height: 1rem;
 
-  border: 0.125rem solid tokens.$color-primary-dark;
-  border-radius: 50%;
-}
+    border: 0.125rem solid tokens.$color-primary-dark;
+    border-radius: 50%;
+  }
 
-.settings-option__input:checked
-  + .settings-option__radio::after {
-  content: "";
+  &__input:checked + &__radio::after {
+    content: "";
 
-  position: absolute;
-  inset: 0.1875rem;
+    position: absolute;
+    inset: 0.1875rem;
 
-  border-radius: 50%;
-  background-color: tokens.$color-primary-dark;
-}
+    border-radius: 50%;
+    background-color: tokens.$color-primary-dark;
+  }
 
-.settings-option__input:focus-visible
-  + .settings-option__radio {
-  outline: 0.1875rem solid tokens.$color-secondary-yellow;
-  outline-offset: 0.1875rem;
-}
+  &__input:focus-visible + &__radio {
+    outline: 0.1875rem solid tokens.$color-secondary-yellow;
+    outline-offset: 0.1875rem;
+  }
 
-.settings-option__input:checked
-  ~ .settings-option__label {
-  font-weight: 700;
-}
+  &__input:checked ~ &__label {
+    font-weight: 700;
+  }
 
-.settings-option__marker {
-  display: block;
-  width: 2.5625rem;
-  height: 0.1875rem;
+  &__marker {
+    display: block;
+    width: 2.5625rem;
+    height: 0.1875rem;
 
-  margin-left: 0.5rem;
+    margin-left: 0.5rem;
 
-  background-color: tokens.$color-secondary-yellow;
-}
+    background-color: tokens.$color-secondary-yellow;
+  }
 
-.settings-option__marker::after {
-  content: "";
+  &__marker::after {
+    content: "";
 
-  display: block;
-  width: 0.625rem;
-  height: 0.625rem;
+    display: block;
+    width: 0.625rem;
+    height: 0.625rem;
 
-  margin-left: auto;
+    margin-left: auto;
 
-  background-color: tokens.$color-secondary-yellow;
-  transform: translate(50%, -0.21875rem) rotate(45deg);
-}
-
-.settings-group:nth-child(1) .settings-group__icon {
-  color: tokens.$color-theme-pink;
-}
-
-.settings-group:nth-child(2) .settings-group__icon {
-  color: tokens.$color-player-green;
-}
-
-.settings-group:nth-child(3) .settings-group__icon {
-  color: tokens.$color-board-blue;
+    background-color: tokens.$color-secondary-yellow;
+    transform: translate(50%, -0.21875rem) rotate(45deg);
+  }
 }

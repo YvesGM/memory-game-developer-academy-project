@@ -12,8 +12,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     },
     home: {
       eyebrow: "Es ist Spielzeit.",
-      title: "Bereit zu spielen?",
-      playButton: "Spielen"
+      title: "Bist du bereit?",
+      playButton: "Los"
     },
     settings: {
       title: "Einstellungen",

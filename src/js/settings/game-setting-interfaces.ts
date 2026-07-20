@@ -9,6 +9,8 @@ export interface GameSettings {
 export interface ThemePreviewConfig {
   className: string;
   assetFolder: string;
+  scoreMode: "separate-icons" | "combined-icon";
+  currentPlayerIconPrefix?: string;
 }
 
 export interface SettingsOption {
