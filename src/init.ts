@@ -35,7 +35,7 @@ import { renderRoute } from "./js/router/app-router";
 import { getTranslation, isLanguage, loadLanguage, saveLanguage } from "./js/language/language-service";
 import { readGameSettings } from "./js/settings/game-settings-form";
 import { saveGameSettings, loadGameSettings } from "./js/settings/game-setting-storage";
-import { addPointToActivePlayer, addSelectedCard, createInitialGameState, flipCard, getSelectedCards, hideSelectedCards, isGameFinished, lockBoard, markSelectedCardsAsMatched, showGameOver, showGameResult } from "./js/game/game-state";
+import { addPointToActivePlayer, addSelectedCard, createInitialGameState, flipCard, getSelectedCards, hideSelectedCards, isGameFinished, lockBoard, markSelectedCardsAsMatched, showGameOver, showGameResult, unlockBoard } from "./js/game/game-state";
 import { clearGameState, loadGameState, saveGameState } from "./js/game/game-state-storage";
 
 // # FUNCTIONALITY
@@ -377,15 +377,20 @@ function revealGameResult(): void {
  */
 function handleMismatchedPair(): void {
     const selectedIds = [...currentGameState.selectedCardIds];
-    currentGameState = hideSelectedCards(
-        currentGameState
-    );
+
+    currentGameState = hideSelectedCards(currentGameState);
+
     saveGameState(currentGameState);
     animateCardsToBack(selectedIds);
-    window.setTimeout(
-        renderApp,
-        CARD_FLIP_DURATION
-    );
+
+    window.setTimeout(finishMismatchedPair, CARD_FLIP_DURATION);
+}
+
+function finishMismatchedPair(): void {
+    currentGameState = unlockBoard(currentGameState);
+
+    saveGameState(currentGameState);
+    renderApp();
 }
 
 /**

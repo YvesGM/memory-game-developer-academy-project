@@ -66,10 +66,10 @@
     --game-score-background: #ffffff;
     --game-text: #ffffff;
     --game-current-player-color: #ffffff;
-    --game-card-width: 6.5625rem;
-    --game-card-height: 7.5rem;
-    --game-board-column-gap: 0.5rem;
-    --game-board-row-gap: 1rem;
+    --game-card-width: 120px;
+    --game-card-height: 140px;
+    --game-board-column-gap: 10px;
+    --game-board-row-gap: 10px;
     --game-header-radius: 0.625rem;
     --game-card-radius: 0.625rem;
     --game-match-color: #ed1b76;
@@ -91,10 +91,10 @@
     --game-score-background: #ffffff;
     --game-text: #1e7594;
     --game-current-player-color: #1e7594;
-    --game-card-width: 7.625rem;
-    --game-card-height: 7.5rem;
-    --game-board-column-gap: 1rem;
-    --game-board-row-gap: 1rem;
+    --game-card-width: 120px;
+    --game-card-height: 105px;
+    --game-board-column-gap: 20px;
+    --game-board-row-gap: 20px;
     --game-header-radius: 0.625rem;
     --game-card-radius: 0.75rem;
     --game-match-color: #1e7594;
@@ -176,8 +176,8 @@
     & img {
       display: block;
 
-      width: 1.8125rem;
-      height: 2.5rem;
+      width: 40px;
+      height: 40px;
 
       object-fit: contain;
     }
@@ -206,32 +206,15 @@
   font-weight: 600;
 }
 
-.game-page--gaming .game-header__active-player-icon,
-.game-page--academy .game-header__active-player-icon,
-.game-page--food .game-header__active-player-icon {
-  padding: 0.25rem 0.5rem;
-
-  border-radius: 0.5rem;
-  background-color: #097fc5;
-}
-
-.game-page--gaming .game-header__active-player-icon img,
-.game-page--academy .game-header__active-player-icon img,
-.game-page--food .game-header__active-player-icon img {
-  width: 1.25rem;
-  height: 1.5625rem;
-}
-
 // GAME_SCORE
 .game-score {
   display: inline-flex;
   align-items: center;
   justify-self: start;
 
-
   min-height: 3.375rem;
   padding: 0.5rem 1rem;
-  gap: 2.5rem;
+  gap: 20px;
 
   background-color: var(--game-score-background);
   border-radius: 0.625rem;
@@ -270,8 +253,6 @@
 }
 
 .game-page--code .game-score {
-  gap: 0.25rem;
-
   padding: 1.0625rem 1.25rem;
   border-radius: 0;
 }
@@ -330,6 +311,24 @@
   background-color: transparent;
   cursor: pointer;
 
+  transform: scale(1);
+  transform-origin: center;
+
+  transition:
+    transform tokens.$transition-fast ease,
+    box-shadow tokens.$transition-fast ease,
+    color tokens.$transition-fast ease,
+    background-color tokens.$transition-fast ease,
+    border-color tokens.$transition-fast ease;
+
+  &:hover {
+    transform: scale(1.035);
+  }
+
+  &:active {
+    transform: scale(0.97) translateY(0.0625rem);
+  }
+
   &__icons {
     display: block;
     flex: 0 0 auto;
@@ -371,6 +370,16 @@
   }
 }
 
+.game-page--academy .game-exit-button,
+.game-page--food .game-exit-button {
+  box-shadow: 0.125rem 0.1875rem 0.5rem rgb(0 0 0 / 16%);
+}
+
+.game-page--academy .game-exit-button:active,
+.game-page--food .game-exit-button:active {
+  box-shadow: 0.0625rem 0.0625rem 0.1875rem rgb(0 0 0 / 12%);
+}
+
 .game-page--code .game-exit-button {
   min-height: 3.875rem;
   padding: 1rem 1.5rem;
@@ -407,7 +416,10 @@
 // GAME_BOARD
 .game-board {
   display: grid;
-  grid-template-columns: repeat(var(--game-board-columns), var(--game-card-width));
+  grid-template-columns: repeat(
+    var(--game-board-columns),
+    var(--game-card-width)
+  );
   grid-auto-rows: var(--game-card-height);
   justify-content: center;
 
@@ -416,54 +428,6 @@
 
   width: fit-content;
   margin-inline: auto;
-
-  &--4x4 {
-    --game-card-width: 7.5rem;
-    --game-card-height: 7.5rem;
-  }
-
-  &--4x6 {
-    --game-card-width: 7.5rem;
-    --game-card-height: 7.5rem;
-  }
-
-  &--6x6 {
-    --game-card-width: 6.25rem;
-    --game-card-height: 6.25rem;
-  }
-}
-
-.game-page--gaming .game-board--4x4 {
-  --game-card-width: 6.5625rem;
-  --game-card-height: 7.5rem;
-}
-
-.game-page--gaming .game-board--4x6,
-.game-page--gaming .game-board--6x6 {
-  --game-card-width: 6.5625rem;
-  --game-card-height: 7.5rem;
-}
-
-.game-page--academy .game-board--4x4 {
-  --game-card-width: 7.625rem;
-  --game-card-height: 7.5rem;
-}
-
-.game-page--academy .game-board--4x6,
-.game-page--academy .game-board--6x6 {
-  --game-card-width: 7.5rem;
-  --game-card-height: 6.5rem;
-}
-
-.game-page--food .game-board--4x4 {
-  --game-card-width: 7.625rem;
-  --game-card-height: 7.5rem;
-}
-
-.game-page--food .game-board--4x6,
-.game-page--food .game-board--6x6 {
-  --game-card-width: 7.625rem;
-  --game-card-height: 7.5rem;
 }
 
 // MEMORY_CARD
@@ -478,7 +442,6 @@
   cursor: pointer;
   perspective: 62.5rem;
 
-
   &__inner {
     position: relative;
 
@@ -487,9 +450,15 @@
     height: 100%;
 
     transform: rotateY(0deg);
+    scale: 1;
+
     transform-style: preserve-3d;
-    transition: transform 500ms ease;
-    will-change: transform;
+    will-change: transform, scale;
+
+    transition:
+      transform 500ms ease,
+      scale tokens.$transition-fast ease,
+      filter tokens.$transition-fast ease;
   }
 
   &--flipped &__inner,
@@ -504,21 +473,28 @@
     display: grid;
     place-items: center;
 
+    width: 100%;
+    height: 100%;
+
     overflow: hidden;
-    border: 0.1875rem solid transparent;
+
     border-radius: var(--game-card-radius);
 
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 
-    transition:
-      border-color 200ms ease,
-      box-shadow 200ms ease;
-
     & img {
+      display: block;
+
       width: 100%;
       height: 100%;
-      object-fit: contain;
+
+      object-fit: cover;
+      border-radius: inherit;
+
+      transition:
+        outline-color 200ms ease,
+        box-shadow 200ms ease;
     }
 
     &--front {
@@ -526,17 +502,31 @@
     }
   }
 
-  &--matched &__face--front {
-    border-color: var(--game-match-color);
-    box-shadow:
-      0 0 0.75rem var(--game-match-color),
-      inset 0 0 0.5rem rgb(255 255 255 / 25%);
+  &--matched &__face--front img {
+    outline: 0.1875rem solid var(--game-match-color);
+    outline-offset: -0.1875rem;
+
+    box-shadow: 0 0 0.75rem var(--game-match-color);
+  }
+
+  &:not(:disabled):not(.memory-card--flipped):not(.memory-card--matched):hover
+    &__inner {
+    scale: 1.035;
+  }
+
+  &:not(:disabled):not(.memory-card--flipped):not(.memory-card--matched):active
+    &__inner {
+    scale: 0.97;
+  }
+
+  &:focus-visible {
+    outline: 0.1875rem solid var(--game-accent);
+    outline-offset: 0.1875rem;
   }
 
   &:disabled {
     cursor: default;
   }
-
 }
 
 .game-score,
@@ -559,7 +549,11 @@
 // MOBILE VIEW
 @media (max-width: 900px) {
   .game-page {
-    --game-card-width: clamp(3.75rem, calc((100vw - 3rem) / var(--game-board-columns) - 0.625rem), 6rem);
+    --game-card-width: clamp(
+      3.75rem,
+      calc((100vw - 3rem) / var(--game-board-columns) - 0.625rem),
+      6rem
+    );
     --game-card-height: var(--game-card-width);
     --game-board-column-gap: 0.5rem;
     --game-board-row-gap: 0.5rem;
@@ -575,7 +569,11 @@
   }
 
   .game-board {
-    --game-card-width: clamp(3.75rem, calc((100vw - 3rem) / var(--game-board-columns) - 0.625rem), 6rem);
+    --game-card-width: clamp(
+      3.75rem,
+      calc((100vw - 3rem) / var(--game-board-columns) - 0.625rem),
+      6rem
+    );
     --game-card-height: var(--game-card-width);
     --game-board-column-gap: 0.5rem;
     --game-board-row-gap: 0.5rem;

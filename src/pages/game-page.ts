@@ -2,6 +2,7 @@
 // ## TS - TYPES
 import type { Translations } from "../js/language/language-types";
 import type { GameState, MemoryCard } from "../js/game/game-interfaces";
+import type { PlayerAssets } from "../js/game/game-player-assets";
 
 // ## TS - FUNCTION-IMPORTS
 import { getBoardConfig } from "../js/game/board-config";
@@ -9,7 +10,6 @@ import { getThemeCardAssets } from "../js/game/theme-card-assets";
 import { renderExitGameDialog } from "../js/game/exit-game-dialog";
 import { getEndScreenAssets } from "../js/game/end-screen-assets";
 import { getPlayerAssets } from "../js/game/game-player-assets";
-
 // # FUNCTIONALITY
 // ## FUNCTIONS
 export function renderGamePage(translation: Translations, gameState: GameState): string {
@@ -28,7 +28,7 @@ export function renderGamePage(translation: Translations, gameState: GameState):
   return `
     <main class="game-page game-page--${gameState.theme}" data-game-theme="${gameState.theme}">
       <section class="game-page__content">
-       ${renderGameHeader(translation, gameState, themeAssets.exitIconPath, themeAssets.exitHoverIconPath, playerAssets.bluePlayerIconPath, playerAssets.orangePlayerIconPath)}
+        ${renderGameHeader(translation, gameState, themeAssets.exitIconPath, themeAssets.exitHoverIconPath, playerAssets)}
         ${renderGameBoard(translation, gameState.cards, themeAssets.cardBackPath, boardConfig.columns, gameState.boardSize)}
       </section>
       ${renderExitGameDialog(translation)}
@@ -37,6 +37,8 @@ export function renderGamePage(translation: Translations, gameState: GameState):
 }
 
 function renderGameOverScreen(translation: Translations, gameState: GameState): string {
+  const playerAssets = getPlayerAssets(gameState.theme);
+
   return `
     <main class="game-page game-page--${gameState.theme} end-screen end-screen--game-over" data-game-theme="${gameState.theme}">
       <section class="end-screen__content">
@@ -47,7 +49,7 @@ function renderGameOverScreen(translation: Translations, gameState: GameState): 
 
         <div class="end-screen__final-score">
           <p class="end-screen__score-label">${translation.game.finalScore}</p>
-          ${renderScores(gameState, "/endscreens/coding/blue-chess-pawn.svg", "/endscreens/coding/orange-chess-pawn.svg")}
+          ${renderScores(translation, gameState, playerAssets)}
         </div>
       </section>
     </main>
@@ -116,42 +118,55 @@ function renderBackToStartButton(translation: Translations): string {
   `;
 }
 
-function renderGameHeader(translation: Translations, gameState: GameState, exitIconPath: string, exitHoverIconPath: string, bluePlayerIconPath: string, orangePlayerIconPath: string): string {
+function renderGameHeader(translation: Translations, gameState: GameState, exitIconPath: string, exitHoverIconPath: string, playerAssets: PlayerAssets): string {
   return `
     <header class="game-header">
-      ${renderScores(gameState, bluePlayerIconPath, orangePlayerIconPath)}
-      ${renderCurrentPlayer(translation, gameState, bluePlayerIconPath, orangePlayerIconPath)}
+      ${renderScores(translation, gameState, playerAssets)}
+      ${renderCurrentPlayer(translation, gameState, playerAssets)}
       ${renderExitButton(translation, exitIconPath, exitHoverIconPath)}
     </header>
   `;
 }
 
-function renderScores(gameState: GameState, bluePlayerIconPath: string, orangePlayerIconPath: string): string {
-  return `
-    <div class="game-score" aria-label="Score">
-      ${renderScore("blue", gameState.scores.blue, bluePlayerIconPath)}
-      ${renderScore("orange", gameState.scores.orange, orangePlayerIconPath)}
-    </div>
-  `;
-}
+function renderScore(player: "blue" | "orange", label: string, score: number, iconPath: string, showLabel: boolean): string {
+  const labelMarkup = showLabel ? `<span class="game-score__label">${label}</span>` : "";
 
-function renderScore(player: "blue" | "orange", score: number, iconPath: string): string {
   return `
     <span class="game-score__player game-score__player--${player}">
       <img class="game-score__player-icon" src="${iconPath}" alt="" aria-hidden="true">
+      ${labelMarkup}
       <span class="game-score__value">${score}</span>
     </span>
   `;
 }
 
-function renderCurrentPlayer(translation: Translations, gameState: GameState, bluePlayerIconPath: string, orangePlayerIconPath: string): string {
-  const isBluePlayer = gameState.activePlayer === "blue";
-  const label = isBluePlayer ? translation.game.bluePlayer : translation.game.orangePlayer;
-  const iconPath = isBluePlayer ? bluePlayerIconPath : orangePlayerIconPath;
+function renderScores(
+  translation: Translations,
+  gameState: GameState,
+  playerAssets: PlayerAssets
+): string {
+  const blueScore = renderScore("blue", translation.game.bluePlayer, gameState.scores.blue, playerAssets.blueScoreIconPath, playerAssets.showScoreLabels);
+  const orangeScore = renderScore("orange", translation.game.orangePlayer, gameState.scores.orange, playerAssets.orangeScoreIconPath, playerAssets.showScoreLabels);
+  const scoreMarkup = gameState.theme === "code" ? `${blueScore}${orangeScore}` : `${orangeScore}${blueScore}`;
 
   return `
-    <div class=" game-header__current-player game-header__current-player--${gameState.activePlayer}">
-      <span class="game-header__current-player-label">${translation.game.currentPlayer}</span>
+    <div class="game-score" aria-label="Score">
+      ${scoreMarkup}
+    </div>
+  `;
+}
+
+function renderCurrentPlayer(translation: Translations, gameState: GameState, playerAssets: PlayerAssets): string {
+  const isBluePlayer = gameState.activePlayer === "blue";
+  const label = isBluePlayer ? translation.game.bluePlayer : translation.game.orangePlayer;
+  const iconPath = isBluePlayer ? playerAssets.blueCurrentPlayerIconPath : playerAssets.orangeCurrentPlayerIconPath;
+
+  return `
+    <div class="game-header__current-player game-header__current-player--${gameState.activePlayer}">
+      <span class="game-header__current-player-label">
+        ${translation.game.currentPlayer}
+      </span>
+
       <span class="game-header__active-player-icon">
         <img src="${iconPath}" alt="${label}">
       </span>

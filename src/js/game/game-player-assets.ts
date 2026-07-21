@@ -4,31 +4,46 @@ import type { GameTheme } from "../settings/game-setting-types";
 
 // # CONFIGS
 // ## INTERFACES
-interface PlayerAssets {
-  bluePlayerIconPath: string;
-  orangePlayerIconPath: string;
+export interface PlayerAssets {
+  blueScoreIconPath: string;
+  orangeScoreIconPath: string;
+  blueCurrentPlayerIconPath: string;
+  orangeCurrentPlayerIconPath: string;
+  showScoreLabels: boolean;
 }
 
-// CONST
+// ## CONST
 const PLAYER_ASSETS: Record<GameTheme, PlayerAssets> = {
   code: {
-    bluePlayerIconPath: "/endscreens/coding/blue-chess-pawn.svg",
-    orangePlayerIconPath: "/endscreens/coding/orange-chess-pawn.svg"
+    blueScoreIconPath: "/game/coding/blue-player-flag.svg",
+    orangeScoreIconPath: "/game/coding/orange-player-flag.svg",
+    blueCurrentPlayerIconPath: "/game/coding/blue-player-flag.svg",
+    orangeCurrentPlayerIconPath: "/game/coding/orange-player-flag.svg",
+    showScoreLabels: true
   },
 
   gaming: {
-    bluePlayerIconPath: "/endscreens/da-projects/blue-chess-pawn.svg",
-    orangePlayerIconPath: "/endscreens/da-projects/orange-chess-pawn.svg"
+    blueScoreIconPath: "/game/games/blue-chess-pawn.svg",
+    orangeScoreIconPath: "/game/games/orange-chess-pawn.svg",
+    blueCurrentPlayerIconPath: "/game/games/blue-mid-chess-pawn.svg",
+    orangeCurrentPlayerIconPath: "/game/games/orange-mid-chess-pawn.svg",
+    showScoreLabels: false
   },
 
   academy: {
-    bluePlayerIconPath: "/endscreens/da-projects/blue-chess-pawn.svg",
-    orangePlayerIconPath: "/endscreens/da-projects/orange-chess-pawn.svg"
+    blueScoreIconPath: "/game/da-projects/blue-chess-pawn.svg",
+    orangeScoreIconPath: "/game/da-projects/orange-chess-pawn.svg",
+    blueCurrentPlayerIconPath: "/game/da-projects/blue-mid-chess-pawn.svg",
+    orangeCurrentPlayerIconPath: "/game/da-projects/orange-mid-chess-pawn.svg",
+    showScoreLabels: false
   },
 
   food: {
-    bluePlayerIconPath: "/endscreens/coding/blue-chess-pawn.svg",
-    orangePlayerIconPath: "/endscreens/coding/orange-chess-pawn.svg"
+    blueScoreIconPath: "/game/food/blue-chess-pawn.svg",
+    orangeScoreIconPath: "/game/food/orange-chess-pawn.svg",
+    blueCurrentPlayerIconPath: "/game/food/blue-mid-chess-pawn.svg",
+    orangeCurrentPlayerIconPath: "/game/food/orange-mid-chess-pawn.svg",
+    showScoreLabels: false
   }
 };
 

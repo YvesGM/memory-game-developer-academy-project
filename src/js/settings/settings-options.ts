@@ -39,10 +39,11 @@ function renderOption(group: SettingsGroup, option: SettingsOption): string {
   `;
 }
 
-function renderSelectionMarker(_isChecked: boolean, isEnabled = false): string {
-  if (!isEnabled) {
+function renderSelectionMarker(isChecked: boolean, isEnabled = false): string {
+  if (!isChecked || !isEnabled) {
     return "";
   }
+
   return `
     <span class="settings-option__marker" aria-hidden="true"></span>
   `;

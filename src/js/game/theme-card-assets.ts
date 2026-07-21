@@ -91,7 +91,7 @@ const THEME_CARD_ASSETS: Record<GameTheme, ThemeCardAssets> = {
   food: {
     cardBackPath: "/game/food/card-back4.svg",
     exitIconPath: "/game/food/exit-icon4.svg",
-    exitHoverIconPath: "/game/food/exit-icon4-hovered.svg",
+    exitHoverIconPath: "/game/food/exit-icon4.svg",
     cardFrontPaths: [
       `${FOOD_CARD_PATH}baguette-card.svg`,
       `${FOOD_CARD_PATH}brezel-card.svg`,

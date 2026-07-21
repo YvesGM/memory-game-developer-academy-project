@@ -48,8 +48,15 @@ export function hideSelectedCards(state: GameState): GameState {
       return selectedIds.has(card.id) ? { ...card, status: "hidden" } : card;
     }),
     selectedCardIds: [],
-    isBoardLocked: false,
+    isBoardLocked: true,
     activePlayer: getOtherPlayer(state.activePlayer)
+  };
+}
+
+export function unlockBoard(state: GameState): GameState {
+  return {
+    ...state,
+    isBoardLocked: false
   };
 }
 

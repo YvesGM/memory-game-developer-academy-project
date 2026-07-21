@@ -13,6 +13,8 @@ export interface ThemePreviewConfig {
   className: string;
   assetFolder: string;
   scoreMode: "separate-icons" | "combined-icon";
+  blueScore: number;
+  orangeScore: number;
   currentPlayerIconPrefix?: string;
 }
 

@@ -9,24 +9,35 @@ const THEME_PREVIEW_CONFIGS: Record<GameTheme, ThemePreviewConfig> = {
   code: {
     className: "theme-preview--coding",
     assetFolder: "coding",
-    scoreMode: "separate-icons"
+    scoreMode: "separate-icons",
+    blueScore: 0,
+    orangeScore: 6
   },
+
   gaming: {
     className: "theme-preview--gaming",
     assetFolder: "gaming",
     scoreMode: "combined-icon",
+    blueScore: 2,
+    orangeScore: 6,
     currentPlayerIconPrefix: "mid-chess-pawn"
   },
+
   academy: {
     className: "theme-preview--academy",
     assetFolder: "da-projects",
     scoreMode: "combined-icon",
+    blueScore: 2,
+    orangeScore: 6,
     currentPlayerIconPrefix: "mid-chess-pawn"
   },
+
   food: {
     className: "theme-preview--food",
     assetFolder: "food",
     scoreMode: "combined-icon",
+    blueScore: 2,
+    orangeScore: 6,
     currentPlayerIconPrefix: "mid-chess-pawn"
   }
 };
@@ -38,11 +49,11 @@ export function getThemePreviewConfig(theme: GameTheme): ThemePreviewConfig {
 }
 
 export function getPlayerIconPath(config: ThemePreviewConfig, player: PlayerId): string {
-  const prefix = config.currentPlayerIconPrefix;
+  const basePath = `/settings/theme-visuals/${config.assetFolder}`;
 
-  if (prefix) {
-    return `/settings/theme-visuals/${config.assetFolder}/${player}-${prefix}-icon.svg`;
+  if (config.currentPlayerIconPrefix) {
+    return `${basePath}/${player}-${config.currentPlayerIconPrefix}-icon.svg`;
   }
 
-  return `/settings/theme-visuals/${config.assetFolder}/${player}-player-icon.svg`;
+  return `${basePath}/${player}-player-icon.svg`;
 }
