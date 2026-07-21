@@ -4,57 +4,68 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.75rem, 1.8vw, 2.5rem);
 
-  width: clamp(11rem, 17.36vw, 15.625rem);
-  min-height: clamp(4rem, 6.8vw, 6.125rem);
+  font-family: tokens.$font-family-heading;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+
+  width: 15.625rem;
+  min-height: 6.125rem;
   padding: 1rem clamp(1rem, 1.7vw, 1.5rem);
+  gap: 2.5rem;
 
+  color: tokens.$color-primary-dark;
+  background-color: tokens.$color-secondary-yellow;
   border: 0;
   border-radius: 0;
 
-  font-family: tokens.$font-family-heading;
-  font-size: clamp(1.5rem, 2.78vw, 2.5rem);
-  font-weight: 700;
-  line-height: 1;
-  color: tokens.$color-primary-dark;
-
-  background-color: tokens.$color-secondary-yellow;
   cursor: pointer;
 
   transition:
     transform tokens.$transition-fast ease,
     box-shadow tokens.$transition-fast ease,
     background-color tokens.$transition-fast ease;
+
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 20%);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    outline: 0.25rem solid tokens.$color-white;
+    outline-offset: 0.25rem;
+  }
+
+  &__controller {
+    flex: 0 0 auto;
+    width: clamp(1.75rem, 3.06vw, 2.75rem);
+    height: auto;
+  }
+
+  &__label {
+    white-space: nowrap;
+  }
+
+  &__arrow {
+    flex: 0 0 auto;
+    width: clamp(1.5rem, 2.43vw, 2.1875rem);
+    height: auto;
+  }
 }
 
-.primary-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 20%);
-}
+@media (max-width: tokens.$breakpoint-tablet) {
+  .primary-button {
+    width: clamp(11rem, 40vw, 15.625rem);
+    min-height: clamp(4rem, 14vw, 6.125rem);
+    gap: 1rem;
 
-.primary-button:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
-.primary-button:focus-visible {
-  outline: 0.25rem solid tokens.$color-white;
-  outline-offset: 0.25rem;
-}
-
-.primary-button__controller {
-  flex: 0 0 auto;
-  width: clamp(1.75rem, 3.06vw, 2.75rem);
-  height: auto;
-}
-
-.primary-button__label {
-  white-space: nowrap;
-}
-
-.primary-button__arrow {
-  flex: 0 0 auto;
-  width: clamp(1.5rem, 2.43vw, 2.1875rem);
-  height: auto;
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
 }

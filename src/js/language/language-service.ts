@@ -1,16 +1,19 @@
+// # TYPESCRIPT
+// ## TS - TYPES
 import type { Language, Translations } from "./language-types";
 
+// ## TS - CONFIGS
 import { TRANSLATIONS } from "./translations";
 
+// # FUNCTIONALITY
+// ## CONST
 const LANGUAGE_STORAGE_KEY = "memory-game-language";
 const DEFAULT_LANGUAGE: Language = "de";
 
+// ## FUNCTIONS
 export function loadLanguage(): Language {
   const storedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
-
-  return isLanguage(storedLanguage)
-    ? storedLanguage
-    : DEFAULT_LANGUAGE;
+  return isLanguage(storedLanguage) ? storedLanguage : DEFAULT_LANGUAGE;
 }
 
 export function isLanguage(value: string | null): value is Language {

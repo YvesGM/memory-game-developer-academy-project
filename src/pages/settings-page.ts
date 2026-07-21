@@ -1,11 +1,16 @@
+// # TYPESCRIPT
+// ## TS - TYPES
 import type { Language, Translations } from "../js/language/language-types";
 import type { GameSettings } from "../js/settings/game-setting-interfaces";
 
+// ## TS - FUNCTION-IMPORTS
 import { renderLanguageSwitch } from "../js/components/language-switch";
 import { renderSettingsGroup } from "../js/settings/settings-options";
 import { renderSettingsSummary } from "../js/settings/settings-summary";
 import { renderThemePreview } from "../js/settings/theme-preview";
 
+// # FUNCTIONALITY
+// ## FUNCTIONS
 export function renderSettingsPage(translation: Translations,language: Language,settings: GameSettings): string {
   return `
     <main class="settings-page">
@@ -15,7 +20,6 @@ export function renderSettingsPage(translation: Translations,language: Language,
 
       <section class="settings-page__content">
         ${renderHeading(translation)}
-
         <form class="settings-page__form" data-settings-form>
           <div class="settings-page__layout">
             <div class="settings-page__options">

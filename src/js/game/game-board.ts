@@ -1,10 +1,15 @@
+// # TYPESCRIPT
+// ## TS - TYPES
 import type { MemoryCard } from "./game-interfaces";
 import type { BoardSize, GameTheme } from "../settings/game-setting-types";
 
+// ## TS - FUNCTION-IMPORTS
 import { getBoardConfig } from "./board-config";
 import { getThemeCardAssets } from "./theme-card-assets";
 
-export function createGameBoard(theme: GameTheme,boardSize: BoardSize): MemoryCard[] {
+// # FUNCTIONALITY
+// ## FUNCTIONS
+export function createGameBoard(theme: GameTheme, boardSize: BoardSize): MemoryCard[] {
   const pairCount = getBoardConfig(boardSize).pairCount;
   const assets = getThemeCardAssets(theme);
   const selectedPaths = assets.cardFrontPaths.slice(0, pairCount);
@@ -19,7 +24,7 @@ function createCardPairs(imagePaths: string[]): MemoryCard[] {
   });
 }
 
-function createPair(imagePath: string,pairIndex: number): MemoryCard[] {
+function createPair(imagePath: string, pairIndex: number): MemoryCard[] {
   const pairId = `pair-${pairIndex}`;
 
   return [
@@ -28,7 +33,7 @@ function createPair(imagePath: string,pairIndex: number): MemoryCard[] {
   ];
 }
 
-function createCard(pairId: string,imagePath: string,copyNumber: number): MemoryCard {
+function createCard(pairId: string, imagePath: string, copyNumber: number): MemoryCard {
   return {
     id: `${pairId}-card-${copyNumber}`,
     pairId,
@@ -40,27 +45,14 @@ function createCard(pairId: string,imagePath: string,copyNumber: number): Memory
 function shuffleCards(cards: MemoryCard[]): MemoryCard[] {
   const shuffledCards = [...cards];
 
-  for (
-    let index = shuffledCards.length - 1;
-    index > 0;
-    index -= 1
-  ) {
+  for (let index = shuffledCards.length - 1; index > 0; index -= 1) {
     swapCards(shuffledCards, index);
   }
 
   return shuffledCards;
 }
 
-function swapCards(cards: MemoryCard[],currentIndex: number): void {
-  const randomIndex = Math.floor(
-    Math.random() * (currentIndex + 1)
-  );
-
-  [
-    cards[currentIndex],
-    cards[randomIndex]
-  ] = [
-    cards[randomIndex],
-    cards[currentIndex]
-  ];
+function swapCards(cards: MemoryCard[], currentIndex: number): void {
+  const randomIndex = Math.floor(Math.random() * (currentIndex + 1));
+  [cards[currentIndex], cards[randomIndex]] = [cards[randomIndex], cards[currentIndex]];
 }

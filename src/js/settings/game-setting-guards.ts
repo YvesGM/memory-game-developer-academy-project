@@ -1,5 +1,9 @@
+// # CONFIGS
+// ## TYPES
 import type { BoardSize, GameTheme, PlayerId } from "./game-setting-types";
 
+// # FUNCTIONALITY
+// ## FUNCTIONS
 export function isPlayerId(value: unknown): value is PlayerId {
   return value === "blue" || value === "orange";
 }

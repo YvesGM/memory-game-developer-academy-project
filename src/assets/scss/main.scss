@@ -1,13 +1,16 @@
+// Base
 @use "./base/global";
 
+// Components
 @use "./components/primary-button";
 @use "./components/language-switch";
 @use "./components/settings-options";
 @use "./components/theme-preview";
 @use "./components/settings-summary";
+@use "./components/exit-dialog";
 
+// Pages
 @use "./pages/home-page";
 @use "./pages/settings-page";
 @use "./pages/game-page";
 @use "./pages/end-screen";
-@use "./components/exit-dialog";

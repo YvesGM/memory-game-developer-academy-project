@@ -1,3 +1,5 @@
+// # CONFIGS
+// ## TYPES
 export type CardStatus =
   | "hidden"
   | "flipped"

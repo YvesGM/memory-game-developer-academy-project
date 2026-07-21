@@ -1,12 +1,17 @@
+// # TYPESCRIPT
+// ## TS - TYPES
 import type { Translations } from "../language/language-types";
 import type { GameSettings, ThemePreviewConfig } from "./game-setting-interfaces";
 
+// ## TS - FUNCTION-IMPORTS
 import { getPlayerIconPath, getThemePreviewConfig } from "./theme-preview-config";
 
+// # FUNCTIONALITY
+// ## FUNCTIONS
 export function renderThemePreview(translation: Translations, settings: GameSettings): string {
   const config = getThemePreviewConfig(settings.theme);
   const basePath = `/settings/theme-visuals/${config.assetFolder}`;
-  const playerIcon = getPlayerIconPath(config, settings.startingPlayer);
+  const playerIcon = getPlayerIconPath(config.assetFolder, settings.startingPlayer);
 
   return `
     <article class="theme-preview ${config.className} theme-preview--player-${settings.startingPlayer}">

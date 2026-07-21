@@ -1,6 +1,10 @@
+// # TYPESCRIPT
+// ## TS - TYPES
 import type { ThemePreviewConfig } from "./game-setting-interfaces";
 import type { GameTheme, PlayerId } from "./game-setting-types";
 
+// # CONFIGS
+// ## CONST
 const THEME_PREVIEW_CONFIGS: Record<GameTheme, ThemePreviewConfig> = {
   code: {
     className: "theme-preview--coding",
@@ -27,6 +31,8 @@ const THEME_PREVIEW_CONFIGS: Record<GameTheme, ThemePreviewConfig> = {
   }
 };
 
+// # FUNCTIONALITY
+// ## FUNCTIONS
 export function getThemePreviewConfig(theme: GameTheme): ThemePreviewConfig {
   return THEME_PREVIEW_CONFIGS[theme];
 }

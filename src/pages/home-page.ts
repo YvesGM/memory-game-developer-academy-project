@@ -1,18 +1,21 @@
+// # TYPESCRIPT
+// ## TS - TYPES
 import type { Language, Translations } from "../js/language/language-types";
 
+// ## TS - FUNCTION-IMPORTS
 import { renderLanguageSwitch } from "../js/components/language-switch";
 
+// # FUNCTIONALITY
+// ## FUNCTIONS
 export function renderHomePage(translation: Translations, language: Language): string {
   return `
     <main class="home-page">
       ${renderBackgroundController()}
-
       <section class="home-page__content">
         <header class="home-page__heading">
           <p class="home-page__eyebrow">
             ${translation.home.eyebrow}
           </p>
-
           <h1 class="home-page__title">
             ${translation.home.title}
           </h1>
@@ -37,11 +40,9 @@ function renderPlayButton(translation: Translations): string {
   return `
     <button class="primary-button" type="button" data-route="settings">
       <img class="primary-button__controller" src="/home/home-controller-icon.svg" alt="" aria-hidden="true">
-
       <span class="primary-button__label">
         ${translation.home.playButton}
       </span>
-
       <img class="primary-button__arrow" src="/home/home-arrow.svg" alt="" aria-hidden="true">
     </button>
   `;

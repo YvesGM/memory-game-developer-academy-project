@@ -1,6 +1,10 @@
+// # TYPESCRIPT
+// ## TS - TYPES
 import type { BoardSize, GameTheme, PlayerId } from "../settings/game-setting-types";
 import type { CardStatus, GamePhase, GameResult } from "./game-types";
 
+// # CONFIGS
+// ## INTERFACES
 export interface MemoryCard {
   id: string;
   pairId: string;

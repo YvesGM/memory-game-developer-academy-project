@@ -8,6 +8,7 @@
 
 html {
   min-width: 320px;
+  min-height: 100%;
   background-color: tokens.$color-primary-dark;
 }
 
@@ -21,7 +22,10 @@ body {
   background-color: tokens.$color-primary-dark;
 }
 
-button {
+button,
+input,
+select,
+textarea {
   font: inherit;
 }
 

@@ -1,5 +1,8 @@
+// # CONFIGS
+// ## TYPES
 import type { PlayerId, BoardSize, GameTheme } from "./game-setting-types";
 
+// ## INTERFACES
 export interface GameSettings {
   startingPlayer: PlayerId;
   boardSize: BoardSize;

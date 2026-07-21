@@ -1,5 +1,8 @@
+// # CONFIGS
+// ## TYPES
 export type Language = "de" | "en";
 
+// ## INTERFACES
 export interface Translations {
   base: {
     langSwitchAriaLabel: string;

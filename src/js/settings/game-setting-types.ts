@@ -1,3 +1,5 @@
+// # CONFIGS
+// ## TYPES
 export type PlayerId = "blue" | "orange";
 
 export type BoardSize =

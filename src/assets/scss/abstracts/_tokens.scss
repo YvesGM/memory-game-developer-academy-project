@@ -4,7 +4,7 @@ $font-family-code: "Red Rose", sans-serif;
 $font-family-gaming: "Orbitron", sans-serif;
 $font-family-academy: "Figtree", sans-serif;
 $font-family-food: "Klee One", cursive;
-$font-family-food-exit: "Delius Unicase", cursive;
+$font-family-food-display: "Delius Unicase", cursive;
 
 $color-primary-dark: #303131;
 $color-secondary-yellow: #f0ea6e;
@@ -16,6 +16,26 @@ $color-muted-border: #d9d9d9;
 $color-theme-pink: #da1eba;
 $color-player-green: #12d6ad;
 $color-board-blue: #194de8;
+
+$color-player-blue: #2bb1ff;
+$color-player-orange: #ff8c2f;
+
+$color-code-background: #303131;
+$color-code-accent: #4dd5bc;
+
+$color-gaming-background: #294f60;
+$color-gaming-header: #5f6986;
+$color-gaming-accent: #ed1b76;
+
+$color-academy-background: #ffffff;
+$color-academy-header: #f0f3f4;
+$color-academy-primary: #1e7594;
+$color-academy-button: #bfe5f2;
+
+$color-food-background: #ffffff;
+$color-food-header: #f0e5d9;
+$color-food-primary: #f3832d;
+$color-food-text: #a45212;
 
 $breakpoint-mobile: 560px;
 $breakpoint-tablet: 768px;

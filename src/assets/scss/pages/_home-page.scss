@@ -4,6 +4,9 @@
   display: grid;
   align-items: center;
 
+  display: grid;
+  align-items: center;
+
   position: relative;
   isolation: isolate;
 
@@ -79,6 +82,7 @@
 }
 
 @keyframes controller-float {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0) rotate(-1deg);

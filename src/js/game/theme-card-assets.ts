@@ -1,12 +1,15 @@
+// # TYPESCRIPT
+// ## TS - TYPES
 import type { GameTheme } from "../settings/game-setting-types";
 import type { ThemeCardAssets } from "./game-interfaces";
 
+// # CONFIGS
+// ## CONST
 const CODING_CARD_PATH = "/game/coding/cards/";
 const GAMING_CARD_PATH = "/game/games/cards/";
 const ACADEMY_CARD_PATH = "/game/da-projects/cards/";
 const FOOD_CARD_PATH = "/game/food/cards/";
-
-const THEME_CARD_ASSETS: Record<GameTheme,ThemeCardAssets> = {
+const THEME_CARD_ASSETS: Record<GameTheme, ThemeCardAssets> = {
   code: {
     cardBackPath: "/game/coding/card-back.svg",
     exitIconPath: "/game/coding/exit-icon.svg",
@@ -112,6 +115,8 @@ const THEME_CARD_ASSETS: Record<GameTheme,ThemeCardAssets> = {
   }
 };
 
+// # FUNCTIONALITY
+// ## FUNCTIONS
 export function getThemeCardAssets(theme: GameTheme): ThemeCardAssets {
   return THEME_CARD_ASSETS[theme];
 }

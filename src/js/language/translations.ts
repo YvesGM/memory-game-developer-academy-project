@@ -1,8 +1,9 @@
-import type {
-  Language,
-  Translations
-} from "./language-types";
+// # TYPESCRIPT
+// ## TS - TYPES
+import type {Language, Translations} from "./language-types";
 
+// # CONFIGS
+// ## CONST
 export const TRANSLATIONS: Record<Language, Translations> = {
   de: {
     base: {

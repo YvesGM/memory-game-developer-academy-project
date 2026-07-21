@@ -357,9 +357,10 @@
 }
 
 @media (max-width: tokens.$breakpoint-mobile) {
-  .theme-preview__header {
-    padding-inline: 0.75rem;
-  }
+  .theme-preview {
+    &__header {
+      padding-inline: 0.75rem;
+    }
 
   .theme-preview__current-player-label,
   .theme-preview__exit-button span {

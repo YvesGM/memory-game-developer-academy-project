@@ -1,10 +1,18 @@
+// # TYPESCRIPT
+// ## TS - TYPES
 import type { GameSettings } from "./game-setting-interfaces";
 
-import { isBoardSize, isGameTheme, isPlayerId } from "./game-setting-guards";
+// ## TS - CONFIGS
 import { DEFAULT_GAME_SETTINGS } from "./game-settings";
 
+// ## TS - FUNCTION-IMPORTS
+import { isBoardSize, isGameTheme, isPlayerId } from "./game-setting-guards";
+
+// # FUNCTIONALITY
+// ## CONST
 const SETTINGS_STORAGE_KEY = "memory-game-settings";
 
+// ## FUNCTIONS
 export function loadGameSettings(): GameSettings {
   const storedSettings = localStorage.getItem(SETTINGS_STORAGE_KEY);
 
@@ -16,19 +24,13 @@ export function loadGameSettings(): GameSettings {
 }
 
 export function saveGameSettings(settings: GameSettings): void {
-  localStorage.setItem(
-    SETTINGS_STORAGE_KEY,
-    JSON.stringify(settings)
-  );
+  localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(settings));
 }
 
 function parseGameSettings(value: string): GameSettings {
   try {
     const parsedValue: unknown = JSON.parse(value);
-
-    return isGameSettings(parsedValue)
-      ? parsedValue
-      : DEFAULT_GAME_SETTINGS;
+    return isGameSettings(parsedValue) ? parsedValue : DEFAULT_GAME_SETTINGS;
   } catch {
     return DEFAULT_GAME_SETTINGS;
   }
@@ -38,14 +40,9 @@ function isGameSettings(value: unknown): value is GameSettings {
   if (!isRecord(value)) {
     return false;
   }
-
-  return isPlayerId(value.startingPlayer)
-    && isBoardSize(value.boardSize)
-    && isGameTheme(value.theme);
+  return isPlayerId(value.startingPlayer) && isBoardSize(value.boardSize) && isGameTheme(value.theme);
 }
 
-function isRecord(
-  value: unknown
-): value is Record<string, unknown> {
+function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }

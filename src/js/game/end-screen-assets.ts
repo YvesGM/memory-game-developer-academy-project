@@ -1,6 +1,10 @@
+// # TYPESCRIPT
+// ## TS - TYPES
 import type { GameTheme } from "../settings/game-setting-types";
 import type { EndScreenAssets } from "./game-interfaces";
 
+// # CONFIGS
+//  ## CONST
 const END_SCREEN_ASSETS: Record<GameTheme, EndScreenAssets> = {
   code: {
     winner: {
@@ -60,6 +64,8 @@ const END_SCREEN_ASSETS: Record<GameTheme, EndScreenAssets> = {
   }
 };
 
+// # FUNCTIONALITY
+// ## FUNCTIONS
 export function getEndScreenAssets(theme: GameTheme): EndScreenAssets {
   return END_SCREEN_ASSETS[theme];
 }
