@@ -5,40 +5,67 @@ import type { GameSettings } from "../js/settings/game-setting-interfaces";
 
 // ## TS - FUNCTION-IMPORTS
 import { renderLanguageSwitch } from "../js/components/language-switch";
-import { renderSettingsGroup } from "../js/settings/settings-options";
 import { renderSettingsSummary } from "../js/settings/settings-summary";
 import { renderThemePreview } from "../js/settings/theme-preview";
+import { renderBoardGroup, renderPlayerGroup, renderThemeGroup } from "../js/settings/settings-page-groups";
 
 // # FUNCTIONALITY
 // ## FUNCTIONS
-export function renderSettingsPage(translation: Translations,language: Language,settings: GameSettings): string {
+
+/**
+ * Renders the complete settings page.
+ *
+ * @param translation - The active translation dictionary.
+ * @param language - The currently selected language.
+ * @param settings - The currently selected game settings.
+ * @returns The settings-page markup.
+ */
+export function renderSettingsPage(translation: Translations, language: Language, settings: GameSettings): string {
   return `
     <main class="settings-page">
-      <div class="settings-page__language">
-        ${renderLanguageSwitch(language, translation)}
-      </div>
-
-      <section class="settings-page__content">
-        ${renderHeading(translation)}
-        <form class="settings-page__form" data-settings-form>
-          <div class="settings-page__layout">
-            <div class="settings-page__options">
-              ${renderThemeGroup(translation, settings)}
-              ${renderPlayerGroup(translation, settings)}
-              ${renderBoardGroup(translation, settings)}
-            </div>
-
-            <div class="settings-page__preview-area">
-              ${renderThemePreview(translation, settings)}
-              ${renderSettingsSummary(translation, settings)}
-            </div>
-          </div>
-        </form>
-      </section>
+      ${renderSettingsLanguage(language, translation)}
+      ${renderSettingsContent(translation, settings)}
     </main>
   `;
 }
 
+/**
+ * Renders the language switch of the settings page.
+ *
+ * @param language - The currently selected language.
+ * @param translation - The active translation dictionary.
+ * @returns The language-switch container markup.
+ */
+function renderSettingsLanguage(language: Language, translation: Translations): string {
+  return `
+    <div class="settings-page__language">
+      ${renderLanguageSwitch(language, translation)}
+    </div>
+  `;
+}
+
+/**
+ * Renders the main content of the settings page.
+ *
+ * @param translation - The active translation dictionary.
+ * @param settings - The currently selected game settings.
+ * @returns The settings content markup.
+ */
+function renderSettingsContent(translation: Translations, settings: GameSettings): string {
+  return `
+    <section class="settings-page__content">
+      ${renderHeading(translation)}
+      ${renderSettingsForm(translation, settings)}
+    </section>
+  `;
+}
+
+/**
+ * Renders the heading of the settings page.
+ *
+ * @param translation - The active translation dictionary.
+ * @returns The settings heading markup.
+ */
 function renderHeading(translation: Translations): string {
   return `
     <header class="settings-page__heading">
@@ -49,72 +76,66 @@ function renderHeading(translation: Translations): string {
   `;
 }
 
-function renderThemeGroup(translation: Translations,settings: GameSettings): string {
-  return renderSettingsGroup({
-    name: "theme",
-    legend: translation.settings.themeTitle,
-    iconPath: "/settings/palette.svg",
-    selectedValue: settings.theme,
-    showSelectionMarker: true,
-    options: [
-      {
-        value: "code",
-        label: translation.settings.codeTheme
-      },
-      {
-        value: "gaming",
-        label: translation.settings.gamingTheme
-      },
-      {
-        value: "academy",
-        label: translation.settings.academyTheme
-      },
-      {
-        value: "food",
-        label: translation.settings.foodTheme
-      }
-    ]
-  });
+/**
+ * Renders the complete settings form.
+ *
+ * @param translation - The active translation dictionary.
+ * @param settings - The currently selected game settings.
+ * @returns The settings-form markup.
+ */
+function renderSettingsForm(translation: Translations, settings: GameSettings): string {
+  return `
+    <form class="settings-page__form" data-settings-form>
+      ${renderSettingsLayout(translation, settings)}
+    </form>
+  `;
 }
 
-function renderPlayerGroup(translation: Translations,settings: GameSettings): string {
-  return renderSettingsGroup({
-    name: "startingPlayer",
-    legend: translation.settings.playerTitle,
-    iconPath: "/settings/chess-pawn-icon.svg",
-    selectedValue: settings.startingPlayer,
-    options: [
-      {
-        value: "blue",
-        label: translation.settings.bluePlayer
-      },
-      {
-        value: "orange",
-        label: translation.settings.orangePlayer
-      }
-    ]
-  });
+/**
+ * Renders the two-column layout of the settings form.
+ *
+ * @param translation - The active translation dictionary.
+ * @param settings - The currently selected game settings.
+ * @returns The settings-layout markup.
+ */
+function renderSettingsLayout(translation: Translations, settings: GameSettings): string {
+  return `
+    <div class="settings-page__layout">
+      ${renderOptionsArea(translation, settings)}
+      ${renderPreviewArea(translation, settings)}
+    </div>
+  `;
 }
 
-function renderBoardGroup(translation: Translations,settings: GameSettings): string {
-  return renderSettingsGroup({
-    name: "boardSize",
-    legend: translation.settings.boardSizeTitle,
-    iconPath: "/settings/style-icon.svg",
-    selectedValue: settings.boardSize,
-    options: [
-      {
-        value: "4x4",
-        label: translation.settings.sixteenCards
-      },
-      {
-        value: "4x6",
-        label: translation.settings.twentyFourCards
-      },
-      {
-        value: "6x6",
-        label: translation.settings.thirtySixCards
-      }
-    ]
-  });
+/**
+ * Renders all selectable settings groups.
+ *
+ * @param translation - The active translation dictionary.
+ * @param settings - The currently selected game settings.
+ * @returns The settings-options markup.
+ */
+function renderOptionsArea(translation: Translations, settings: GameSettings): string {
+  return `
+    <div class="settings-page__options">
+      ${renderThemeGroup(translation, settings)}
+      ${renderPlayerGroup(translation, settings)}
+      ${renderBoardGroup(translation, settings)}
+    </div>
+  `;
+}
+
+/**
+ * Renders the theme preview and settings summary.
+ *
+ * @param translation - The active translation dictionary.
+ * @param settings - The currently selected game settings.
+ * @returns The settings preview-area markup.
+ */
+function renderPreviewArea(translation: Translations, settings: GameSettings): string {
+  return `
+    <div class="settings-page__preview-area">
+      ${renderThemePreview(translation, settings)}
+      ${renderSettingsSummary(translation, settings)}
+    </div>
+  `;
 }
