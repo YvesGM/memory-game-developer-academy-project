@@ -12,7 +12,6 @@ import "@fontsource/figtree/700.css";
 
 import "@fontsource/klee-one/400.css";
 import "@fontsource/klee-one/600.css";
-import "@fontsource/delius-unicase/700.css";
 
 import "@fontsource/delius-unicase/400.css";
 import "@fontsource/delius-unicase/700.css";
@@ -28,7 +27,7 @@ import type { GameSettings } from "./js/settings/game-setting-interfaces";
 import type { GameState } from "./js/game/game-interfaces";
 
 // ## TS - CONFIGS
-import { CARD_FLIP_BACK_DELAY, CARD_FLIP_DURATION, GAME_OVER_DURATION, MAX_SELECTED_CARDS } from "./js/game/game-constants";
+import { CARD_FLIP_BACK_DELAY, CARD_FLIP_DURATION, GAME_OVER_DURATION, MAX_SELECTED_CARDS, EXIT_DIALOG_ANIMATION_DURATION } from "./js/game/game-constants";
 
 // ## TS - FUNCTION-IMPORTS
 import { renderRoute } from "./js/router/app-router";
@@ -50,6 +49,7 @@ let currentRoute: Route = loadRoute();
 let currentLanguage: Language = loadLanguage();
 let currentSettings: GameSettings = loadGameSettings();
 let currentGameState: GameState = loadGameState(currentSettings);
+let gameResultTimeoutId: number | null = null;
 
 // ## FUNCTIONS
 
@@ -340,6 +340,15 @@ function evaluateSelectedCards(): void {
     window.setTimeout(handleMismatchedPair, CARD_FLIP_BACK_DELAY);
 }
 
+function clearGameResultTimeout(): void {
+    if (gameResultTimeoutId === null) {
+        return;
+    }
+
+    window.clearTimeout(gameResultTimeoutId);
+    gameResultTimeoutId = null;
+}
+
 /**
  * Processes a matching pair of cards.
  *
@@ -349,22 +358,41 @@ function evaluateSelectedCards(): void {
 function handleMatchedPair(): void {
     currentGameState = addPointToActivePlayer(currentGameState);
     currentGameState = markSelectedCardsAsMatched(currentGameState);
+
     if (!isGameFinished(currentGameState)) {
         saveGameState(currentGameState);
         renderApp();
         return;
     }
+
+    clearGameResultTimeout();
+
     currentGameState = showGameOver(currentGameState);
+
     saveGameState(currentGameState);
     renderApp();
-    window.setTimeout(revealGameResult, GAME_OVER_DURATION);
+
+    gameResultTimeoutId = window.setTimeout(
+        revealGameResult,
+        GAME_OVER_DURATION
+    );
 }
 
 /**
  * Replaces the game-over screen with the final result screen.
  */
 function revealGameResult(): void {
+    gameResultTimeoutId = null;
+
+    if (
+        currentRoute !== "game"
+        || currentGameState.phase !== "game-over"
+    ) {
+        return;
+    }
+
     currentGameState = showGameResult(currentGameState);
+
     saveGameState(currentGameState);
     renderApp();
 }
@@ -429,6 +457,7 @@ function getCardButton(cardId: string): HTMLButtonElement | null {
  */
 function handleEndScreenClick(event: MouseEvent): void {
     const target = event.target;
+
     if (!(target instanceof Element)) {
         return;
     }
@@ -436,12 +465,18 @@ function handleEndScreenClick(event: MouseEvent): void {
     const button = target.closest<HTMLButtonElement>(
         "[data-end-screen-home]"
     );
+
     if (!button) {
         return;
     }
 
+    event.preventDefault();
+
+    clearGameResultTimeout();
     clearGameState();
+
     currentGameState = createInitialGameState(currentSettings);
+
     navigateTo(HOME_ROUTE);
 }
 
@@ -469,6 +504,16 @@ function handleGameDialogClick(event: MouseEvent): void {
     if (target.closest("[data-confirm-exit]")) {
         exitCurrentGame();
     }
+
+    const exitDialogBackdrop = target.closest("[data-exit-dialog]");
+
+    if (
+        exitDialogBackdrop &&
+        target === exitDialogBackdrop
+    ) {
+        closeExitDialog();
+        return;
+    }
 }
 
 /**
@@ -478,11 +523,19 @@ function handleGameDialogClick(event: MouseEvent): void {
  */
 function openExitDialog(): void {
     const dialog = getExitDialog();
+
     if (!dialog) {
         return;
     }
+
+    dialog.classList.remove("exit-dialog-backdrop--closing");
     dialog.hidden = false;
+
     document.body.classList.add("is-dialog-open");
+
+    window.requestAnimationFrame(() => {
+        dialog.classList.add("exit-dialog-backdrop--open");
+    });
 }
 
 /**
@@ -492,11 +545,20 @@ function openExitDialog(): void {
  */
 function closeExitDialog(): void {
     const dialog = getExitDialog();
+
     if (!dialog) {
         return;
     }
-    dialog.hidden = true;
-    document.body.classList.remove("is-dialog-open");
+
+    dialog.classList.remove("exit-dialog-backdrop--open");
+    dialog.classList.add("exit-dialog-backdrop--closing");
+
+    window.setTimeout(() => {
+        dialog.hidden = true;
+        dialog.classList.remove("exit-dialog-backdrop--closing");
+
+        document.body.classList.remove("is-dialog-open");
+    }, EXIT_DIALOG_ANIMATION_DURATION);
 }
 
 /**
@@ -506,6 +568,7 @@ function closeExitDialog(): void {
  * and navigates back to the settings route.
  */
 function exitCurrentGame(): void {
+    clearGameResultTimeout();
     clearGameState();
 
     currentGameState = createInitialGameState(

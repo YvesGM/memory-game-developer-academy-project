@@ -9,6 +9,13 @@
   background-color: var(--dialog-background, #ffffff);
   border-radius: var(--dialog-radius, 0);
 
+  opacity: 0;
+  transform: translateY(-4rem) scale(0.98);
+
+  transition:
+    opacity 280ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+
   &-backdrop {
     position: fixed;
     z-index: 20;
@@ -19,7 +26,32 @@
 
     padding: 1rem;
 
-    background-color: rgb(0 0 0 / 50%);
+    background-color: rgb(0 0 0 / 0%);
+    opacity: 0;
+
+    transition:
+      opacity 280ms ease,
+      background-color 280ms ease;
+
+    &--open {
+      opacity: 1;
+      background-color: rgb(0 0 0 / 50%);
+
+      .exit-dialog {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    &--closing {
+      opacity: 0;
+      background-color: rgb(0 0 0 / 0%);
+
+      .exit-dialog {
+        opacity: 0;
+        transform: translateY(-4rem) scale(0.98);
+      }
+    }
 
     &[hidden] {
       display: none;
@@ -114,6 +146,12 @@
   border-radius: 10px;
 }
 
+.game-page--gaming .exit-dialog__button--confirm:hover,
+.game-page--gaming .exit-dialog__button--confirm:focus-visible {
+  color: #ffffff;
+  background-color: var(--dialog-confirm-color);
+}
+
 .game-page--academy .exit-dialog__button--back {
   border-radius: 10px;
 }
@@ -129,8 +167,17 @@
 }
 
 .game-page--food .exit-dialog__button--confirm {
-  background-color: var(--dialog-back-background);
+  border-color: var(--dialog-confirm-color);
   border-radius: 10px;
+
+  color: #ffffff;
+  background-color: var(--dialog-back-background);
+}
+
+.game-page--food .exit-dialog__button--confirm:hover,
+.game-page--food .exit-dialog__button--confirm:focus-visible {
+  color: #ffffff;
+  background-color: var(--dialog-confirm-color);
 }
 
 .game-page--academy .exit-dialog__button,
@@ -149,14 +196,33 @@
 
 @media (max-width: 560px) {
   .exit-dialog {
+    width: min(100%, 30rem);
     padding: 2rem 1.25rem;
+  }
+
+  .exit-dialog__title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
   }
 
   .exit-dialog__actions {
     flex-direction: column;
+    gap: 1rem;
+
+    margin-top: 2rem;
   }
 
   .exit-dialog__button {
     width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem 1rem;
+
+    font-size: clamp(0.875rem, 4.5vw, 1.125rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exit-dialog,
+  .exit-dialog-backdrop {
+    transition: none;
   }
 }

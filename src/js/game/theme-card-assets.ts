@@ -65,7 +65,7 @@ const THEME_CARD_ASSETS: Record<GameTheme, ThemeCardAssets> = {
   academy: {
     cardBackPath: "/game/da-projects/card-back3.svg",
     exitIconPath: "/game/da-projects/exit-icon3.svg",
-    exitHoverIconPath: "/game/da-projects/exit-icon3-hovered.svg",
+    exitHoverIconPath: "/game/da-projects/exit-icon3.svg",
     cardFrontPaths: [
       `${ACADEMY_CARD_PATH}3-wins-card.svg`,
       `${ACADEMY_CARD_PATH}code-a-cuisine-card.svg`,

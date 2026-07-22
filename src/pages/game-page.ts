@@ -29,27 +29,52 @@ export function renderGamePage(translation: Translations, gameState: GameState):
     <main class="game-page game-page--${gameState.theme}" data-game-theme="${gameState.theme}">
       <section class="game-page__content">
         ${renderGameHeader(translation, gameState, themeAssets.exitIconPath, themeAssets.exitHoverIconPath, playerAssets)}
-        ${renderGameBoard(translation, gameState.cards, themeAssets.cardBackPath, boardConfig.columns, gameState.boardSize)}
+        ${renderGameBoard(translation, gameState.cards, themeAssets.cardBackPath, boardConfig.rows, boardConfig.columns, gameState.boardSize)}
       </section>
       ${renderExitGameDialog(translation)}
     </main>
   `;
 }
 
-function renderGameOverScreen(translation: Translations, gameState: GameState): string {
+function renderGameOverScreen(
+  translation: Translations,
+  gameState: GameState
+): string {
   const playerAssets = getPlayerAssets(gameState.theme);
 
   return `
-    <main class="game-page game-page--${gameState.theme} end-screen end-screen--game-over" data-game-theme="${gameState.theme}">
-      <section class="end-screen__content">
+    <main
+      class="
+        game-page
+        game-page--${gameState.theme}
+        end-screen
+        end-screen--game-over
+      "
+      data-game-theme="${gameState.theme}"
+    >
+      <section class="end-screen__content end-screen__content--game-over">
         <h1 class="end-screen__game-over-title">
-          <span class="end-screen__title-shadow">${translation.game.gameOver}</span>
-          <span class="end-screen__title-front">${translation.game.gameOver}</span>
+          <span class="end-screen__title-shadow" aria-hidden="true">
+            ${translation.game.gameOver}
+          </span>
+
+          <span class="end-screen__title-front">
+            ${translation.game.gameOver}
+          </span>
         </h1>
 
         <div class="end-screen__final-score">
-          <p class="end-screen__score-label">${translation.game.finalScore}</p>
-          ${renderScores(translation, gameState, playerAssets)}
+          <p class="end-screen__score-label">
+            ${translation.game.finalScore}
+          </p>
+
+          <div class="end-screen__score-box">
+            ${renderScores(
+    translation,
+    gameState,
+    playerAssets
+  )}
+          </div>
         </div>
       </section>
     </main>
@@ -71,49 +96,125 @@ function renderResultScreen(translation: Translations, gameState: GameState): st
   return "";
 }
 
-function renderWinnerScreen(translation: Translations, gameState: GameState, winner: "blue" | "orange", winnerImagePath: string, confettiImagePath: string | null): string {
-  const winnerLabel = winner === "blue" ? translation.game.bluePlayer : translation.game.orangePlayer;
-  const confettiMarkup = confettiImagePath ? `<img class="end-screen__confetti" src="${confettiImagePath}" alt="" aria-hidden="true">` : "";
+function renderWinnerScreen(
+  translation: Translations,
+  gameState: GameState,
+  winner: "blue" | "orange",
+  winnerImagePath: string,
+  confettiImagePath: string | null
+): string {
+  const winnerLabel =
+    winner === "blue"
+      ? translation.game.bluePlayer
+      : translation.game.orangePlayer;
+
+  const confettiMarkup = confettiImagePath
+    ? `
+      <img
+        class="end-screen__confetti"
+        src="${confettiImagePath}"
+        alt=""
+        aria-hidden="true"
+      >
+    `
+    : "";
 
   return `
-    <main class="game-page game-page--${gameState.theme} end-screen end-screen--winner end-screen--winner-${winner}" data-game-theme="${gameState.theme}">
+    <main
+      class="
+        game-page
+        game-page--${gameState.theme}
+        end-screen
+        end-screen--winner
+        end-screen--winner-${winner}
+      "
+      data-game-theme="${gameState.theme}"
+    >
       ${confettiMarkup}
+
       <section class="end-screen__content end-screen__content--result">
         <div class="end-screen__winner-text">
-          <p>${translation.game.winnerIs}</p>
+          <p class="end-screen__winner-intro">
+            ${translation.game.winnerIs}
+          </p>
+
           <h1 class="end-screen__winner-name">
             ${winnerLabel}
           </h1>
         </div>
-        <img class="end-screen__result-icon end-screen__winner-icon" src="${winnerImagePath}" alt="" aria-hidden="true">
+
+        <div class="end-screen__result-image-wrapper">
+          <img
+            class="end-screen__result-icon end-screen__winner-icon"
+            src="${winnerImagePath}"
+            alt=""
+            aria-hidden="true"
+          >
+        </div>
+
         ${renderBackToStartButton(translation)}
       </section>
     </main>
   `;
 }
 
-function renderDrawScreen(translation: Translations, gameState: GameState, scaleImagePath: string): string {
+function renderDrawScreen(
+  translation: Translations,
+  gameState: GameState,
+  scaleImagePath: string
+): string {
   return `
-    <main class="game-page game-page--${gameState.theme} end-screen end-screen--draw" data-game-theme="${gameState.theme}">
+    <main
+      class="
+        game-page
+        game-page--${gameState.theme}
+        end-screen
+        end-screen--draw
+      "
+      data-game-theme="${gameState.theme}"
+    >
       <section class="end-screen__content end-screen__content--result">
         <div class="end-screen__draw-text">
-          <p>${translation.game.drawIntro}</p>
+          <p class="end-screen__draw-intro">
+            ${translation.game.drawIntro}
+          </p>
+
           <h1 class="end-screen__draw-title">
-            <span class="end-screen__title-shadow">${translation.game.drawTitle}</span>
-            <span class="end-screen__title-front">${translation.game.drawTitle}</span>
+            <span class="end-screen__title-shadow" aria-hidden="true">
+              ${translation.game.drawTitle}
+            </span>
+
+            <span class="end-screen__title-front">
+              ${translation.game.drawTitle}
+            </span>
           </h1>
         </div>
-        <img class="end-screen__result-icon end-screen__draw-icon" src="${scaleImagePath}" alt="" aria-hidden="true">
+
+        <div class="end-screen__result-image-wrapper">
+          <img
+            class="end-screen__result-icon end-screen__draw-icon"
+            src="${scaleImagePath}"
+            alt=""
+            aria-hidden="true"
+          >
+        </div>
+
         ${renderBackToStartButton(translation)}
       </section>
     </main>
   `;
 }
 
-function renderBackToStartButton(translation: Translations): string {
+function renderBackToStartButton(
+  translation: Translations
+): string {
   return `
-    <button class="end-screen__back-button" type="button" data-end-screen-home>
-      ${translation.game.backToStart}
+    <button
+      class="end-screen__back-button"
+      type="button"
+      data-end-screen-home
+    >
+      <span>${translation.game.backToStart}</span>
     </button>
   `;
 }
@@ -181,14 +282,14 @@ function renderExitButton(translation: Translations, iconPath: string, hoverIcon
         <img class="game-exit-button__icon game-exit-button__icon--default" src="${iconPath}" alt="">
         <img class="game-exit-button__icon game-exit-button__icon--hover" src="${hoverIconPath}" alt="">
       </span>
-      <span>${translation.game.exitGame}</span>
+      <span class="game-exit-button__text">${translation.game.exitGame}</span>
     </button>
   `;
 }
 
-function renderGameBoard(translation: Translations, cards: MemoryCard[], cardBackPath: string, columns: number, boardSize: GameState["boardSize"]): string {
+function renderGameBoard(translation: Translations, cards: MemoryCard[], cardBackPath: string, rows: number, columns: number, boardSize: GameState["boardSize"]): string {
   return `
-    <section class="game-board game-board--${boardSize}" aria-label="${translation.game.title}" style="--game-board-columns: ${columns};">
+    <section class="game-board game-board--${boardSize}" aria-label="${translation.game.title}" style="--game-board-columns: ${columns}; --game-board-rows: ${rows};">
       ${cards.map((card) => { return renderMemoryCard(translation, card, cardBackPath); }).join("")}
     </section>
   `;

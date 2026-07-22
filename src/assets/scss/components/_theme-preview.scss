@@ -51,7 +51,7 @@
     --preview-header-background: #f2f7f8;
     --preview-header-color: #167da6;
     --preview-exit-color: #167da6;
-    --preview-exit-background: #BFE5F2;
+    --preview-exit-background: #bfe5f2;
     --preview-score-background: #f2f7f8;
 
     --preview-font-family: #{tokens.$font-family-academy};
@@ -266,7 +266,7 @@
     font-size: 0.625rem;
     font-weight: 700;
 
-    color: var(--preview-exit-color);;
+    color: var(--preview-exit-color);
     border: 0;
     background-color: var(--preview-exit-background);
   }
@@ -337,13 +337,53 @@
 }
 
 @media (max-width: tokens.$breakpoint-mobile) {
+}
+
+@media (max-width: 430px) {
   .theme-preview {
     &__header {
       padding-inline: 0.75rem;
     }
   }
+  .theme-preview {
+    --preview-first-x: -54px;
+    --preview-first-y: -40px;
+    --preview-second-x: 40px;
+    --preview-second-y: -10px;
+  }
+
+  .theme-preview--gaming {
+    --preview-first-x: -54px;
+    --preview-first-y: -20px;
+    --preview-second-x: 43px;
+    --preview-second-y: -10px;
+  }
+
+  .theme-preview--academy {
+    --preview-first-x: -50px;
+    --preview-first-y: -50px;
+    --preview-second-x: 50px;
+    --preview-second-y: 0px;
+  }
+
+  .theme-preview--food {
+    --preview-first-x: -50px;
+    --preview-first-y: -40px;
+    --preview-second-x: 40px;
+    --preview-second-y: 10px;
+  }
+
   .theme-preview__current-player-label,
   .theme-preview__exit-button span {
     display: none;
+  }
+
+  .theme-preview__card {
+    width: 120px;
+    top: 30%;
+  }
+
+  .theme-preview__current-player {
+    padding-left: 40px;
   }
 }
