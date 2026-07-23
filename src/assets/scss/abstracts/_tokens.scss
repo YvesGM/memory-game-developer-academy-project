@@ -1,3 +1,4 @@
+// # TYPOGRAPHY
 $font-family-heading: "Red Rose", serif;
 $font-family-body: "Almarai", sans-serif;
 $font-family-code: "Red Rose", sans-serif;
@@ -7,6 +8,7 @@ $font-family-food: "Klee One", cursive;
 $font-family-food-display: "Delius Unicase", cursive;
 $font-family-food-exit: "Delius Unicase", cursive;
 
+// # BASE COLORS
 $color-primary-dark: #303131;
 $color-secondary-yellow: #f0ea6e;
 $color-white: #ffffff;
@@ -14,33 +16,41 @@ $color-settings-background: #ffffff;
 $color-settings-surface: #f6f6f6;
 $color-muted-border: #d9d9d9;
 
+// # SELECTION COLORS
 $color-theme-pink: #da1eba;
 $color-player-green: #12d6ad;
 $color-board-blue: #194de8;
 
+// # PLAYER COLORS
 $color-player-blue: #2bb1ff;
 $color-player-orange: #ff8c2f;
 
+// # CODE THEME
 $color-code-background: #303131;
 $color-code-accent: #4dd5bc;
 
+// # GAMING THEME
 $color-gaming-background: #294f60;
 $color-gaming-header: #5f6986;
 $color-gaming-accent: #ed1b76;
 
+// # ACADEMY THEME
 $color-academy-background: #ffffff;
 $color-academy-header: #f0f3f4;
 $color-academy-primary: #1e7594;
 $color-academy-button: #bfe5f2;
 
+// # FOOD THEME
 $color-food-background: #ffffff;
 $color-food-header: #f0e5d9;
 $color-food-primary: #f3832d;
 $color-food-text: #a45212;
 
+// # BREAKPOINTS
 $breakpoint-mobile: 560px;
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1200px;
 
+// # TRANSITIONS
 $transition-fast: 160ms;
 $transition-default: 240ms;

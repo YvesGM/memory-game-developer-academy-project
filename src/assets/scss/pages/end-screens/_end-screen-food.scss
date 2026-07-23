@@ -1,0 +1,89 @@
+@use "../../abstracts/tokens" as tokens;
+
+// # FOOD THEME
+.game-page--food.end-screen {
+    --end-button-text: #ffffff;
+    --end-button-background: #f3832d;
+    --end-button-border: #f3832d;
+    --end-button-hover-text: #ffffff;
+    --end-button-hover-background: #f3832d;
+    --end-button-hover-border: #f3832d;
+    --end-button-focus: #a45212;
+    --end-button-radius: 0.625rem;
+
+    color: #ffffff;
+    background-color: #f3832d;
+
+    .end-screen__game-over-title,
+    .end-screen__draw-title {
+        font-family: tokens.$font-family-food;
+        font-weight: 600;
+    }
+
+    .end-screen__title-shadow {
+        color: transparent;
+    }
+
+    .end-screen__title-front {
+        color: #ffffff;
+
+        text-shadow: 0 0.25rem 0.25rem rgb(0 0 0 / 25%);
+    }
+
+    .end-screen__score-label {
+        font-family: tokens.$font-family-food;
+        font-size: 2.625rem;
+        font-weight: 600;
+    }
+
+    .end-screen__winner-intro,
+    .end-screen__draw-intro {
+        font-family: tokens.$font-family-food;
+        font-weight: 400;
+    }
+
+    .end-screen__winner-name {
+        color: #a45212;
+
+        font-family: tokens.$font-family-food;
+        font-weight: 600;
+        text-transform: none;
+    }
+
+    .end-screen__back-button {
+        font-family: tokens.$font-family-food;
+        box-shadow: 0.1875rem 0.1875rem 0.3125rem rgb(0 0 0 / 20%);
+    }
+
+    // Result screens are white in the Figma design.
+    &.end-screen--winner,
+    &.end-screen--draw {
+        --end-button-text: #ffffff;
+        --end-button-background: #f3832d;
+        --end-button-border: #f3832d;
+        --end-button-hover-text: #ffffff;
+        --end-button-hover-background: #ff9b3d;
+        --end-button-hover-border: #ff9b3d;
+        --end-button-focus: #a45212;
+
+        color: #a45212;
+        background-color: #f6f6f6;
+
+        .end-screen__draw-intro,
+        .end-screen__winner-intro {
+            color: #c35c19;
+        }
+
+        .end-screen__draw-title .end-screen__title-front {
+            color: #f3832d;
+            text-shadow: none;
+        }
+
+        .end-screen__result-image-wrapper {
+            padding: 1rem;
+
+            background-color: #f9e8d7;
+            box-shadow: 0.1875rem 0.1875rem 0.375rem rgb(0 0 0 / 25%);
+        }
+    }
+}

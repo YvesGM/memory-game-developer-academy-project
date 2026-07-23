@@ -1,31 +1,26 @@
-// # TYPESCRIPT
-// ## TS - TYPES
-import type { Language } from "./language-types";
+// ------------ IMPORTS ------------//
+import type { Language } from "../lib/language/language-types";
 
 // ## TS - FUNCTION-IMPORTS
-import { appContext } from "../app/app-context";
+import { appContext } from "../lib/app/app-constants";
 import { renderApp } from "../app/app-renderer";
-import {
-    isLanguage,
-    saveLanguage
-} from "./language-service";
+import { isLanguage, saveLanguage } from "./language-service";
 
-// # FUNCTIONALITY
-// ## FUNCTIONS
+// ------------ FUNCTIONS ------------//
 
 /**
  * Handles delegated clicks on language-switch buttons.
  *
  * @param event - The delegated mouse event.
  */
-export function handleLanguageClick(
-    event: MouseEvent
-): void {
+export function handleLanguageClick(event: MouseEvent): void {
     const language = getLanguageFromTarget(event.target);
-
-    if (language) {
-        activateLanguage(language);
+    
+    if (language === null) {
+        return;
     }
+
+    activateLanguage(language);
 }
 
 /**
@@ -34,9 +29,7 @@ export function handleLanguageClick(
  * @param target - The original event target.
  * @returns The selected language or `null`.
  */
-function getLanguageFromTarget(
-    target: EventTarget | null
-): Language | null {
+function getLanguageFromTarget(target: EventTarget | null): Language | null {
     if (!(target instanceof Element)) {
         return null;
     }
@@ -54,14 +47,9 @@ function getLanguageFromTarget(
  * @param button - The language button to evaluate.
  * @returns The selected language or `null`.
  */
-function getLanguageFromButton(
-    button: HTMLButtonElement | null
-): Language | null {
+function getLanguageFromButton(button: HTMLButtonElement | null): Language | null {
     const language = button?.dataset.language ?? null;
-
-    return isLanguage(language)
-        ? language
-        : null;
+    return isLanguage(language) ? language : null;
 }
 
 /**
@@ -71,7 +59,6 @@ function getLanguageFromButton(
  */
 function activateLanguage(language: Language): void {
     appContext.currentLanguage = language;
-
     saveLanguage(language);
     renderApp();
 }

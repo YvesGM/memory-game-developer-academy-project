@@ -1,0 +1,83 @@
+@use "../../abstracts/tokens" as tokens;
+
+// GAME_SCORE
+.game-score {
+    display: inline-flex;
+    align-items: center;
+    justify-self: start;
+
+    min-height: 3.375rem;
+    padding: 0.5rem 1rem;
+    gap: 20px;
+
+    background-color: var(--game-score-background);
+    border-radius: 0.625rem;
+
+    &__player {
+        font-family: inherit;
+        font-size: 1.875rem;
+        font-weight: 700;
+        line-height: 1;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+
+        &--blue {
+            color: #097fc5;
+        }
+
+        &--orange {
+            color: #ea6900;
+        }
+
+        &-icon {
+            display: block;
+
+            width: 1.375rem;
+            height: 1.75rem;
+
+            object-fit: contain;
+        }
+    }
+
+    &__value {
+        display: inline-block;
+    }
+}
+
+.game-page--code .game-score {
+    padding: 1.0625rem 1.25rem;
+    border-radius: 0;
+}
+
+.game-page--code .game-score__player {
+    font-size: 1.5rem;
+}
+
+.game-page--code .game-score__player-icon {
+    width: 1.5rem;
+    height: 1.875rem;
+}
+
+.game-page--gaming .game-score {
+    gap: 2.5rem;
+}
+
+.game-page--gaming .game-score__player {
+    font-size: 1.875rem;
+}
+
+.game-page--academy .game-score__player {
+    font-size: 1.875rem;
+}
+
+.game-page--food .game-score {
+    min-height: 3.375rem;
+    gap: 2.5rem;
+}
+
+.game-page--food .game-score__player {
+    font-family: tokens.$font-family-food-display;
+    font-size: 1.875rem;
+}

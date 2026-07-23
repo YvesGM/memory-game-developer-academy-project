@@ -1,4 +1,5 @@
-// # FONTS
+// ------------ IMPORTS ------------//
+// FONTS
 import "@fontsource/almarai/400.css";
 
 import "@fontsource/red-rose/700.css";
@@ -19,9 +20,8 @@ import "@fontsource/delius-unicase/700.css";
 // # SCSS
 import "./assets/scss/main.scss";
 
-// # TYPESCRIPT
-// ## TS - FUNCTION-IMPORTS
+// SCRIPTS
 import { initializeApp } from "./js/app/app-bootstrap";
 
-// # FUNCTIONALITY
+// ------------ FUNCTIONS ------------//
 initializeApp();

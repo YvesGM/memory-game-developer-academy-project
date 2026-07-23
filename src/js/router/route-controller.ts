@@ -1,15 +1,12 @@
-// # TYPESCRIPT
-// ## TS - TYPES
-import type { Route } from "./router-types";
+// ------------ IMPORTS ------------//
+import type { Route } from "../lib/router/router-types";
 
-// ## TS - FUNCTION-IMPORTS
-import { appContext } from "../app/app-context";
+import { appContext } from "../lib/app/app-constants";
 import { renderApp } from "../app/app-renderer";
 import { saveRoute } from "./route-storage";
 import { isRoute } from "./route-guards";
 
-// # FUNCTIONALITY
-// ## FUNCTIONS
+// ------------ FUNCTIONS ------------//
 
 /**
  * Activates, persists, and renders an application route.
@@ -18,7 +15,6 @@ import { isRoute } from "./route-guards";
  */
 export function navigateTo(route: Route): void {
     appContext.currentRoute = route;
-
     saveRoute(route);
     renderApp();
 }
@@ -28,11 +24,8 @@ export function navigateTo(route: Route): void {
  *
  * @param event - The delegated mouse event.
  */
-export function handleRouteClick(
-    event: MouseEvent
-): void {
+export function handleRouteClick(event: MouseEvent): void {
     const route = getRouteFromTarget(event.target);
-
     if (route) {
         navigateTo(route);
     }
@@ -44,16 +37,12 @@ export function handleRouteClick(
  * @param target - The original event target.
  * @returns The selected route or `null`.
  */
-function getRouteFromTarget(
-    target: EventTarget | null
-): Route | null {
+function getRouteFromTarget(target: EventTarget | null): Route | null {
     if (!(target instanceof Element)) {
         return null;
     }
 
-    const button = target.closest<HTMLButtonElement>(
-        "[data-route]"
-    );
+    const button = target.closest<HTMLButtonElement>("[data-route]");
 
     return getRouteFromButton(button);
 }
@@ -64,12 +53,7 @@ function getRouteFromTarget(
  * @param button - The route button to evaluate.
  * @returns The selected route or `null`.
  */
-function getRouteFromButton(
-    button: HTMLButtonElement | null
-): Route | null {
+function getRouteFromButton(button: HTMLButtonElement | null): Route | null {
     const route = button?.dataset.route ?? null;
-
-    return isRoute(route)
-        ? route
-        : null;
+    return isRoute(route) ? route : null;
 }

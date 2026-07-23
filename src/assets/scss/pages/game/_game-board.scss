@@ -1,0 +1,14 @@
+// GAME_BOARD
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(var(--game-board-columns),
+            var(--game-card-width));
+    grid-auto-rows: var(--game-card-height);
+    justify-content: center;
+
+    column-gap: var(--game-board-column-gap);
+    row-gap: var(--game-board-row-gap);
+
+    width: fit-content;
+    margin-inline: auto;
+}

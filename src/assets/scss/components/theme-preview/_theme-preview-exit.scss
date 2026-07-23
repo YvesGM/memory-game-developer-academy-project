@@ -1,0 +1,59 @@
+@use "../../abstracts/tokens" as tokens;
+
+.theme-preview {
+    &__exit-button {
+        justify-self: end;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+
+        min-height: 1.25rem;
+        padding: 0.25rem 0.5rem;
+
+        border: 0.0625rem solid var(--preview-exit-color);
+        border-radius: 0.25rem;
+
+        font-family: var(--preview-font-family);
+        font-size: 0.625rem;
+        font-weight: 700;
+        line-height: 1;
+
+        color: var(--preview-header-color);
+        background-color: rgb(77 213 188 / 20%);
+
+        pointer-events: none;
+    }
+
+    &--gaming &__exit-button {
+        background-color: rgb(237 27 118 / 5%);
+    }
+
+    &--academy &__exit-button {
+        font-family: tokens.$font-family-academy;
+        font-size: 0.625rem;
+        font-weight: 700;
+
+        color: var(--preview-exit-color);
+        border: 0;
+        background-color: var(--preview-exit-background);
+    }
+
+    &--food &__exit-button {
+        font-family: tokens.$font-family-food-exit;
+        font-size: 0.625rem;
+        font-weight: 700;
+
+        color: var(--preview-exit-color);
+        border-color: #f3832d;
+        border-radius: 0.375rem;
+
+        background-color: rgb(255 255 255 / 70%);
+    }
+
+    &__exit-icon {
+        width: 0.75rem;
+        height: 0.75rem;
+        object-fit: contain;
+    }
+}

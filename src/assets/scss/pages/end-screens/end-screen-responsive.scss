@@ -1,0 +1,54 @@
+
+// # RESPONSIVE
+@media (max-width: 700px) {
+  .end-screen {
+    padding: 1.5rem;
+
+    &__content--game-over {
+      gap: 4rem;
+    }
+
+    &__content--result {
+      gap: 2.5rem;
+    }
+
+    &__winner-intro,
+    &__draw-intro {
+      font-size: 1.75rem;
+    }
+
+    &__result-icon {
+      max-height: 12rem;
+    }
+
+    &__winner-icon,
+    &__draw-icon {
+      height: 12rem;
+    }
+
+    &__back-button {
+      min-height: 3rem;
+      padding: 0.75rem 1rem;
+
+      font-size: 1rem;
+    }
+  }
+
+  .game-page--academy.end-screen {
+    .end-screen__score-label {
+      font-size: 2rem;
+    }
+  }
+
+  .game-page--food.end-screen {
+    .end-screen__score-label {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .end-screen__back-button {
+    transition: none;
+  }
+}

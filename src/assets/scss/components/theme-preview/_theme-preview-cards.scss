@@ -1,0 +1,37 @@
+.theme-preview {
+    &__cards {
+        position: absolute;
+        top: 6.75rem;
+        left: 50%;
+
+        width: 21.75rem;
+        height: 16rem;
+
+        transform: translateX(-50%);
+    }
+
+    &__card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        width: var(--preview-card-width);
+        height: auto;
+
+        filter: drop-shadow(0.25rem 0.25rem 0.34rem rgb(0 0 0 / 20%));
+
+        &--first {
+            z-index: 2;
+
+            transform: translate(calc(-50% + var(--preview-first-x)),
+                    calc(-50% + var(--preview-first-y))) rotate(var(--preview-first-rotation));
+        }
+
+        &--second {
+            z-index: 1;
+
+            transform: translate(calc(-50% + var(--preview-second-x)),
+                    calc(-50% + var(--preview-second-y))) rotate(var(--preview-second-rotation));
+        }
+    }
+}

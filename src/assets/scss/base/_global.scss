@@ -1,11 +1,13 @@
 @use "../abstracts/tokens" as tokens;
 
+// # BOX MODEL
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+// # DOCUMENT
 html {
   min-width: 320px;
   min-height: 100%;
@@ -22,6 +24,7 @@ body {
   background-color: tokens.$color-primary-dark;
 }
 
+// # FORM CONTROLS
 button,
 input,
 select,
@@ -34,10 +37,12 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+// # MEDIA
 img {
   display: block;
 }
 
+// # APPLICATION ROOT
 #app {
   min-height: 100vh;
 }

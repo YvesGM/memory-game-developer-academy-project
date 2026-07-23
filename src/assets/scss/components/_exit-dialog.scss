@@ -111,10 +111,8 @@
       &:hover,
       &:focus-visible {
         color: var(--dialog-back-hover-text, var(--dialog-background));
-        background-color: var(
-          --dialog-back-hover-background,
-          var(--dialog-confirm-color)
-        );
+        background-color: var(--dialog-back-hover-background,
+            var(--dialog-confirm-color));
       }
     }
 
@@ -137,57 +135,71 @@
   }
 }
 
-.game-page--gaming .exit-dialog__button--back {
-  border-radius: 10px;
+.game-page--gaming {
+  .exit-dialog__button {
+    &--back {
+      border-radius: 10px;
+    }
+
+    &--confirm {
+      border-radius: 10px;
+      background-color: #ed1b7614;
+
+      &:hover,
+      &:focus-visible {
+        color: #ffffff;
+        background-color: var(--dialog-confirm-color);
+      }
+    }
+  }
 }
 
-.game-page--gaming .exit-dialog__button--confirm {
-  background-color: #ed1b7614;
-  border-radius: 10px;
+.game-page--academy {
+  .exit-dialog__button {
+    box-shadow: 0.125rem 0.1875rem 0.5rem rgb(0 0 0 / 18%);
+
+    &:active {
+      box-shadow: 0.0625rem 0.0625rem 0.1875rem rgb(0 0 0 / 14%);
+    }
+
+    &--back {
+      border-radius: 10px;
+    }
+
+    &--confirm {
+      color: #ffffff;
+      background-color: var(--dialog-confirm-color);
+      border-radius: 10px;
+    }
+  }
 }
 
-.game-page--gaming .exit-dialog__button--confirm:hover,
-.game-page--gaming .exit-dialog__button--confirm:focus-visible {
-  color: #ffffff;
-  background-color: var(--dialog-confirm-color);
-}
+.game-page--food {
+  .exit-dialog__button {
+    box-shadow: 0.125rem 0.1875rem 0.5rem rgb(0 0 0 / 18%);
 
-.game-page--academy .exit-dialog__button--back {
-  border-radius: 10px;
-}
+    &:active {
+      box-shadow: 0.0625rem 0.0625rem 0.1875rem rgb(0 0 0 / 14%);
+    }
 
-.game-page--academy .exit-dialog__button--confirm {
-  color: white;
-  background-color: var(--dialog-confirm-color);
-  border-radius: 10px;
-}
+    &--back {
+      border-radius: 10px;
+    }
 
-.game-page--food .exit-dialog__button--back {
-  border-radius: 10px;
-}
+    &--confirm {
+      border-color: var(--dialog-confirm-color);
+      border-radius: 10px;
 
-.game-page--food .exit-dialog__button--confirm {
-  border-color: var(--dialog-confirm-color);
-  border-radius: 10px;
+      color: #ffffff;
+      background-color: var(--dialog-back-background);
 
-  color: #ffffff;
-  background-color: var(--dialog-back-background);
-}
-
-.game-page--food .exit-dialog__button--confirm:hover,
-.game-page--food .exit-dialog__button--confirm:focus-visible {
-  color: #ffffff;
-  background-color: var(--dialog-confirm-color);
-}
-
-.game-page--academy .exit-dialog__button,
-.game-page--food .exit-dialog__button {
-  box-shadow: 0.125rem 0.1875rem 0.5rem rgb(0 0 0 / 18%);
-}
-
-.game-page--academy .exit-dialog__button:active,
-.game-page--food .exit-dialog__button:active {
-  box-shadow: 0.0625rem 0.0625rem 0.1875rem rgb(0 0 0 / 14%);
+      &:hover,
+      &:focus-visible {
+        color: #ffffff;
+        background-color: var(--dialog-confirm-color);
+      }
+    }
+  }
 }
 
 .is-dialog-open {
@@ -221,6 +233,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .exit-dialog,
   .exit-dialog-backdrop {
     transition: none;

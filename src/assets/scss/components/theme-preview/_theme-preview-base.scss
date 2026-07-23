@@ -1,0 +1,83 @@
+.theme-preview {
+    --preview-background: linear-gradient(135deg, #303131, #6d6d6d);
+
+    --preview-header-background: transparent;
+    --preview-header-color: #ffffff;
+    --preview-exit-color: #4dd5bc;
+    --preview-score-background: rgb(77 213 188 / 30%);
+
+    --preview-font-family: #{tokens.$font-family-heading};
+
+    --preview-card-width: 220px;
+    --preview-first-x: -74px;
+    --preview-first-y: 0px;
+    --preview-first-rotation: 0deg;
+    --preview-second-x: 70px;
+    --preview-second-y: 30px;
+    --preview-second-rotation: 0deg;
+
+    position: relative;
+
+    width: min(28.75rem, 100%);
+    aspect-ratio: 460 / 412;
+    overflow: hidden;
+
+    border-radius: 1rem;
+    background: var(--preview-background);
+
+    &--gaming {
+        --preview-background: linear-gradient(180deg, #294f60, #2086b4);
+
+        --preview-header-background: #5f6986;
+        --preview-header-color: #ffffff;
+        --preview-exit-color: #e71c4f;
+        --preview-score-background: #ffffff;
+
+        --preview-font-family: #{tokens.$font-family-gaming};
+
+        --preview-card-width: 190px;
+        --preview-first-x: -74px;
+        --preview-first-y: 0px;
+        --preview-first-rotation: 0deg;
+        --preview-second-x: 76px;
+        --preview-second-y: 20px;
+        --preview-second-rotation: 0deg;
+    }
+
+    &--academy {
+        --preview-background: #b8e4f2;
+        --preview-header-background: #f2f7f8;
+        --preview-header-color: #167da6;
+        --preview-exit-color: #167da6;
+        --preview-exit-background: #bfe5f2;
+        --preview-score-background: #f2f7f8;
+
+        --preview-font-family: #{tokens.$font-family-academy};
+
+        --preview-card-width: 200px;
+        --preview-first-x: -80px;
+        --preview-first-y: -40px;
+        --preview-first-rotation: 0deg;
+        --preview-second-x: 80px;
+        --preview-second-y: 40px;
+        --preview-second-rotation: 0deg;
+    }
+
+    &--food {
+        --preview-background: #eee6de;
+        --preview-header-background: #ffffff;
+        --preview-header-color: #167da6;
+        --preview-exit-color: #ff8129;
+        --preview-score-background: #ffffff;
+
+        --preview-font-family: #{tokens.$font-family-food};
+
+        --preview-card-width: 180px;
+        --preview-first-x: -66px;
+        --preview-first-y: -40px;
+        --preview-first-rotation: 0deg;
+        --preview-second-x: 70px;
+        --preview-second-y: 40px;
+        --preview-second-rotation: 0deg;
+    }
+}

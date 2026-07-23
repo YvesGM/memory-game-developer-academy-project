@@ -93,12 +93,14 @@
 }
 
 @media (max-width: 1024px) {
-  .settings-page__layout {
-    grid-template-columns: 1fr;
-  }
+  .settings-page {
+    &__layout {
+      grid-template-columns: 1fr;
+    }
 
-  .settings-page__preview-area {
-    align-items: stretch;
+    &__preview-area {
+      align-items: stretch;
+    }
   }
 
   .theme-preview {

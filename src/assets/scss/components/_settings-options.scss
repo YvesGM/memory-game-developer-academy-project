@@ -115,18 +115,18 @@
     margin-left: 0.5rem;
 
     background-color: tokens.$color-secondary-yellow;
-  }
-
-  &__marker::after {
-    content: "";
-
-    display: block;
-    width: 0.625rem;
-    height: 0.625rem;
-
-    margin-left: auto;
-
-    background-color: tokens.$color-secondary-yellow;
-    transform: translate(50%, -0.21875rem) rotate(45deg);
+    
+    &::after {
+      content: "";
+      
+      display: block;
+      width: 0.625rem;
+      height: 0.625rem;
+      
+      margin-left: auto;
+      
+      background-color: tokens.$color-secondary-yellow;
+      transform: translate(50%, -0.21875rem) rotate(45deg);
+    }
   }
 }

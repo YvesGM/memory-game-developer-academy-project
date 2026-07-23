@@ -1,0 +1,52 @@
+@use "../../abstracts/tokens" as tokens;
+
+// # CODE THEME
+.game-page--code.end-screen {
+  --end-button-text: #ffffff;
+  --end-button-background: rgb(134 233 214 / 20%);
+  --end-button-border: #4dd5bc;
+  --end-button-hover-text: #303131;
+  --end-button-hover-background: #4dd5bc;
+  --end-button-hover-border: #4dd5bc;
+  --end-button-focus: #ffffff;
+  --end-button-radius: 0;
+
+  color: #ffffff;
+  background-color: #303131;
+
+  .end-screen__game-over-title,
+  .end-screen__draw-title {
+    font-family: tokens.$font-family-code;
+    font-weight: 700;
+  }
+
+  .end-screen__title-shadow {
+    color: #ffffff;
+
+    transform: translateX(-0.4375rem);
+  }
+
+  .end-screen__title-front {
+    color: #4dd5bc;
+  }
+
+  .end-screen__score-label,
+  .end-screen__winner-intro,
+  .end-screen__draw-intro {
+    font-family: tokens.$font-family-code;
+    font-weight: 400;
+  }
+
+  .end-screen__winner-name {
+    font-family: tokens.$font-family-code;
+    text-transform: uppercase;
+  }
+
+  .end-screen__winner-blue .end-screen__winner-name {
+    color: #2bb1ff;
+  }
+
+  .end-screen__winner-orange .end-screen__winner-name {
+    color: #ff8c2f;
+  }
+}

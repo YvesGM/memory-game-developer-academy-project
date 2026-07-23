@@ -1,0 +1,69 @@
+@use "../../abstracts/tokens" as tokens;
+
+// # GAMING THEME
+.game-page--gaming.end-screen {
+  --end-button-text: #ffffff;
+  --end-button-background: rgb(237 27 118 / 8%);
+  --end-button-border: #ed1b76;
+  --end-button-hover-text: #ffffff;
+  --end-button-hover-background: #ed1b76;
+  --end-button-hover-border: #ed1b76;
+  --end-button-focus: #ffffff;
+  --end-button-radius: 0.625rem;
+
+  color: #ffffff;
+  background-color: #294f60;
+
+  .end-screen__content--game-over {
+    gap: 6.5rem;
+  }
+
+  .end-screen__game-over-title,
+  .end-screen__draw-title {
+    font-family: tokens.$font-family-gaming;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+  }
+
+  .end-screen__title-shadow {
+    color: transparent;
+  }
+
+  .end-screen__title-front {
+    color: #ed1b76;
+
+    text-shadow: 0.25rem 0.25rem 0.25rem rgb(0 0 0 / 25%);
+  }
+
+  .end-screen__score-label,
+  .end-screen__winner-intro,
+  .end-screen__draw-intro {
+    font-family: tokens.$font-family-gaming;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+  }
+
+  .end-screen__winner-name {
+    font-family: tokens.$font-family-gaming;
+    letter-spacing: 0.07em;
+    text-transform: none;
+
+    text-shadow: 0.1875rem 0.1875rem 0 rgb(0 0 0 / 25%);
+  }
+
+  .end-screen__winner-blue .end-screen__winner-name {
+    color: #2bb1ff;
+  }
+
+  .end-screen__winner-orange .end-screen__winner-name {
+    color: #ea6900;
+  }
+
+  .end-screen__winner-icon {
+    height: 21.5rem;
+  }
+
+  .end-screen__draw-icon {
+    height: 17rem;
+  }
+}

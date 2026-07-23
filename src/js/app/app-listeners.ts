@@ -1,18 +1,13 @@
-// # TYPESCRIPT
-// ## TS - FUNCTION-IMPORTS
+// ------------ IMPORTS ------------//
 import { handleLanguageClick } from "../language/language-controller";
 import { handleRouteClick } from "../router/route-controller";
-import {
-    handleSettingsChange,
-    handleSettingsSubmit
-} from "../settings/settings-controller";
-import { handleGameCardClick } from "../game/card-selection-controller";
-import { handleEndScreenClick } from "../game/game-result-controller";
-import { handleGameDialogClick } from "../game/exit-dialog-controller";
-import { appRef } from "./app-dom";
+import { handleSettingsChange, handleSettingsSubmit } from "../pages/settings/settings-controller";
+import { handleGameCardClick } from "../pages/game/game-card-controller";
+import { handleEndScreenClick } from "../pages/game/game-result-controller";
+import { handleGameDialogClick } from "../pages/game/game-exit-controller";
+import { appRef } from "../lib/app/app-constants";
 
-// # FUNCTIONALITY
-// ## FUNCTIONS
+// ------------ FUNCTIONS ------------//
 
 /**
  * Registers all delegated application event listeners.
@@ -37,13 +32,6 @@ function initializeClickListeners(): void {
  * Registers delegated settings-form event listeners.
  */
 function initializeFormListeners(): void {
-    appRef.addEventListener(
-        "change",
-        handleSettingsChange
-    );
-
-    appRef.addEventListener(
-        "submit",
-        handleSettingsSubmit
-    );
+    appRef.addEventListener("change", handleSettingsChange);
+    appRef.addEventListener("submit", handleSettingsSubmit);
 }

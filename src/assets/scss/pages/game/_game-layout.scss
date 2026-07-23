@@ -1,0 +1,139 @@
+@use "../../abstracts/tokens" as tokens;
+
+// GAME_PAGE
+.game-page {
+  --game-background: #303131;
+  --game-header-background: transparent;
+  --game-accent: #4dd5bc;
+  --game-score-background: rgb(134 233 214 / 20%);
+  --game-text: #ffffff;
+  --game-current-player-color: #ffffff;
+
+  --game-card-width: 7.5rem;
+  --game-card-height: 7.5rem;
+  --game-board-column-gap: 0.75rem;
+  --game-board-row-gap: 0.75rem;
+
+  --game-header-radius: 0;
+  --game-card-radius: 0;
+  --game-match-color: #4dd5bc;
+
+  font-weight: 400;
+
+  min-height: 100vh;
+
+  color: var(--game-text);
+  background-color: var(--game-background);
+
+  &--code {
+    --dialog-background: #ffffff;
+    --dialog-text: #303131;
+    --dialog-back-background: #66cfbc;
+    --dialog-back-text: #ffffff;
+    --dialog-confirm-color: #4dd5bc;
+    --dialog-radius: 0;
+
+    --game-background: #303131;
+    --game-header-background: transparent;
+    --game-accent: #4dd5bc;
+    --game-score-background: rgb(134 233 214 / 20%);
+    --game-text: #ffffff;
+    --game-current-player-color: #ffffff;
+    --game-card-width: 7.5rem;
+    --game-card-height: 7.5rem;
+    --game-board-column-gap: 0.75rem;
+    --game-board-row-gap: 0.75rem;
+    --game-header-radius: 0;
+    --game-card-radius: 0;
+    --game-match-color: #4dd5bc;
+
+    font-family: tokens.$font-family-code;
+  }
+
+  &--gaming {
+    --dialog-background: #edf4f7;
+    --dialog-text: #28576b;
+    --dialog-back-background: #ef1680;
+    --dialog-back-text: #ffffff;
+    --dialog-confirm-color: #ef1680;
+    --dialog-radius: 1rem;
+
+    --game-background: #294f60;
+    --game-header-background: #5f6986;
+    --game-accent: #ed1b76;
+    --game-score-background: #ffffff;
+    --game-text: #ffffff;
+    --game-current-player-color: #ffffff;
+    --game-card-width: 120px;
+    --game-card-height: 140px;
+    --game-board-column-gap: 10px;
+    --game-board-row-gap: 10px;
+    --game-header-radius: 0.625rem;
+    --game-card-radius: 0.625rem;
+    --game-match-color: #ed1b76;
+
+    font-family: tokens.$font-family-gaming;
+  }
+
+  &--academy {
+    --dialog-background: #edf6fa;
+    --dialog-text: #28576b;
+    --dialog-back-background: #b8e4f2;
+    --dialog-back-text: #167da6;
+    --dialog-confirm-color: #ff8585;
+    --dialog-radius: 1rem;
+
+    --game-background: #ffffff;
+    --game-header-background: #f0f3f4;
+    --game-accent: #1e7594;
+    --game-score-background: #ffffff;
+    --game-text: #1e7594;
+    --game-current-player-color: #1e7594;
+    --game-card-width: 120px;
+    --game-card-height: 105px;
+    --game-board-column-gap: 20px;
+    --game-board-row-gap: 20px;
+    --game-header-radius: 0.625rem;
+    --game-card-radius: 0.75rem;
+    --game-match-color: #1e7594;
+
+    font-family: tokens.$font-family-academy;
+  }
+
+  &--food {
+    --dialog-background: #ffffff;
+    --dialog-text: #c35c19;
+    --dialog-back-background: #ff9b3d;
+    --dialog-back-text: #ffffff;
+    --dialog-confirm-color: #ff8129;
+    --dialog-radius: 1rem;
+
+    --game-background: #ffffff;
+    --game-header-background: #f0e5d9;
+    --game-accent: #f3832d;
+    --game-score-background: #ffffff;
+    --game-text: #a45212;
+    --game-current-player-color: #a45212;
+    --game-card-width: 7.625rem;
+    --game-card-height: 7.5rem;
+    --game-board-column-gap: 1rem;
+    --game-board-row-gap: 1rem;
+    --game-header-radius: 0.625rem;
+    --game-card-radius: 0;
+    --game-match-color: #ff8129;
+
+    font-family: tokens.$font-family-food;
+    font-weight: 400;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 3.375rem;
+
+    width: min(76.1875rem, calc(100% - 3rem));
+    min-height: 100vh;
+    margin-inline: auto;
+    padding-block: 2.5625rem;
+  }
+}

@@ -1,18 +1,10 @@
-// # TYPESCRIPT
-// ## TS - TYPES
-import type { Route } from "./router-types";
+// ------------ IMPORTS ------------//
+import type { Route } from "../lib/router/router-types";
 
-// ## TS - CONFIGS
-import {
-    HOME_ROUTE,
-    ROUTE_STORAGE_KEY
-} from "./route-constants";
-
-// ## TS - FUNCTION-IMPORTS
+import { HOME_ROUTE, ROUTE_STORAGE_KEY } from "../lib/router/route-constants";
 import { isRoute } from "./route-guards";
 
-// # FUNCTIONALITY
-// ## FUNCTIONS
+// ------------ FUNCTIONS ------------//
 
 /**
  * Loads the last valid application route from local storage.
@@ -21,10 +13,7 @@ import { isRoute } from "./route-guards";
  */
 export function loadRoute(): Route {
     const storedRoute = localStorage.getItem(ROUTE_STORAGE_KEY);
-
-    return isRoute(storedRoute)
-        ? storedRoute
-        : HOME_ROUTE;
+    return isRoute(storedRoute) ? storedRoute : HOME_ROUTE;
 }
 
 /**
@@ -33,8 +22,5 @@ export function loadRoute(): Route {
  * @param route - The route to store.
  */
 export function saveRoute(route: Route): void {
-    localStorage.setItem(
-        ROUTE_STORAGE_KEY,
-        route
-    );
+    localStorage.setItem(ROUTE_STORAGE_KEY, route);
 }

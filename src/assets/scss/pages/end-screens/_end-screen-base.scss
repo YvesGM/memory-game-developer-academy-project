@@ -1,0 +1,228 @@
+// # END SCREEN
+.end-screen {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  min-height: 100vh;
+  padding: 2rem;
+
+  overflow: hidden;
+
+  &__content {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: min(61.875rem, 100%);
+
+    text-align: center;
+
+    &--game-over {
+      gap: 6.5rem;
+    }
+
+    &--result {
+      gap: 4rem;
+    }
+  }
+
+  // # SHARED TITLES
+  &__game-over-title,
+  &__draw-title {
+    position: relative;
+
+    width: 100%;
+    margin: 0;
+  }
+
+  &__title-shadow,
+  &__title-front {
+    display: grid;
+    place-items: center;
+  }
+
+  &__title-shadow {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+  }
+
+  &__title-front {
+    position: relative;
+  }
+
+  // # GAME OVER
+  &__game-over-title {
+    min-height: 7.8125rem;
+
+    font-family: inherit;
+    font-size: clamp(4rem, 9vw, 8.125rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  // # FINAL SCORE
+  &__final-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  &__score-label {
+    margin: 0;
+
+    font-family: inherit;
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+
+  &__score-box {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__score-box .game-score {
+    justify-self: auto;
+  }
+
+  // # WINNER
+  &__winner-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__winner-intro {
+    margin: 0;
+
+    font-family: inherit;
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  &__winner-name {
+    margin: 0;
+
+    font-family: inherit;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  // # DRAW
+  &__draw-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__draw-intro {
+    margin: 0;
+
+    font-family: inherit;
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  &__draw-title {
+    min-height: 5rem;
+
+    font-family: inherit;
+    font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  // # RESULT IMAGE
+  &__result-image-wrapper {
+    display: grid;
+    place-items: center;
+  }
+
+  &__result-icon {
+    display: block;
+
+    width: auto;
+    max-width: min(21.25rem, 70vw);
+    max-height: 21.5rem;
+
+    object-fit: contain;
+  }
+
+  &__winner-icon {
+    height: 21.5rem;
+  }
+
+  &__draw-icon {
+    height: 17rem;
+  }
+
+  // # CONFETTI
+  &__confetti {
+    position: absolute;
+    z-index: 0;
+    top: -2rem;
+    left: 50%;
+
+    width: min(77rem, 100%);
+    height: auto;
+
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  // # HOME BUTTON
+  &__back-button {
+    min-height: 3rem;
+    padding: 0.75rem 1.25rem;
+
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+
+    color: var(--end-button-text);
+    background-color: var(--end-button-background);
+    border: 0.125rem solid var(--end-button-border);
+    border-radius: var(--end-button-radius);
+
+    cursor: pointer;
+
+    transform: translateY(0) scale(1);
+
+    transition:
+      color 150ms ease,
+      background-color 150ms ease,
+      border-color 150ms ease,
+      box-shadow 150ms ease,
+      transform 150ms ease;
+
+    &:hover {
+      color: var(--end-button-hover-text);
+      background-color: var(--end-button-hover-background);
+      border-color: var(--end-button-hover-border);
+
+      transform: translateY(-0.125rem) scale(1.03);
+    }
+
+    &:active {
+      box-shadow: none;
+
+      transform: translateY(0.125rem) scale(0.97);
+    }
+
+    &:focus-visible {
+      outline: 0.1875rem solid var(--end-button-focus);
+      outline-offset: 0.25rem;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.game-score,
+.game-header__current-player,
+.game-exit-button,
+.end-screen__winner-name,
+.end-screen__draw-title,
+.end-screen__game-over-title {
+  font-weight: 700;
+}
+
+.game-page--food .game-score,
+.game-page--food .game-header__current-player,
+.game-page--food .game-exit-button,
+.game-page--food .end-screen__winner-name,
+.game-page--food .end-screen__draw-title {
+  font-weight: 600;
+}

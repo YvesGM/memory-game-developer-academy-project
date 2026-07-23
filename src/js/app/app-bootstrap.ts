@@ -1,13 +1,11 @@
-// # TYPESCRIPT
-// ## TS - FUNCTION-IMPORTS
+// ------------ IMPORTS ------------//
 import { initializeListeners } from "./app-listeners";
 import { renderApp } from "./app-renderer";
 
-// # FUNCTIONALITY
-// ## FUNCTIONS
+// ------------ FUNCTIONS ------------//
 
 /**
- * Initializes the application and performs its first render.
+ * Initializes the application and performs the initial render.
  */
 export function initializeApp(): void {
     initializeListeners();

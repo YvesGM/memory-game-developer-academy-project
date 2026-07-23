@@ -1,0 +1,69 @@
+@use "../../abstracts/tokens" as tokens;
+
+.theme-preview {
+    &__scores {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        width: fit-content;
+        min-height: 1.125rem;
+        padding: 0.25rem 0.5rem;
+
+        border-radius: 0.25rem;
+
+        font-family: var(--preview-font-family);
+        font-size: 0.625rem;
+        font-weight: 700;
+
+        background-color: var(--preview-score-background);
+    }
+
+    &--coding &__scores {
+        background-color: rgb(77 213 188 / 30%);
+    }
+
+    &--gaming &__scores,
+    &--academy &__scores,
+    &--food &__scores {
+        gap: 1rem;
+        min-height: auto;
+        padding: 0.25rem 0.5rem;
+    }
+
+    &__score {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        &--blue {
+            color: #2bb1ff;
+        }
+
+        &--orange {
+            color: #ff8c2f;
+        }
+
+        & img {
+            width: 10px;
+            height: 8px;
+        }
+    }
+
+    &--academy &__score-icon,
+    &--food &__score-icon {
+        width: 0.5rem;
+        height: 0.625rem;
+    }
+
+    &--academy &__score-number,
+    &--food &__score-number {
+        font-family: tokens.$font-family-academy;
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
+
+    &__scores--combined {
+        gap: 1rem;
+    }
+}

@@ -1,0 +1,60 @@
+@use "../../abstracts/tokens" as tokens;
+
+// # ACADEMY THEME
+.game-page--academy.end-screen {
+  --end-button-text: #1e7594;
+  --end-button-background: #bfe5f2;
+  --end-button-border: #bfe5f2;
+  --end-button-hover-text: #ffffff;
+  --end-button-hover-background: #ff8585;
+  --end-button-hover-border: #ff8585;
+  --end-button-focus: #ffffff;
+  --end-button-radius: 0.625rem;
+
+  color: #ffffff;
+  background-color: #1e7594;
+
+  .end-screen__game-over-title,
+  .end-screen__draw-title {
+    font-family: tokens.$font-family-academy;
+    font-weight: 800;
+  }
+
+  .end-screen__title-shadow {
+    color: transparent;
+  }
+
+  .end-screen__title-front {
+    color: #fd5b4f;
+
+    text-shadow: 0 0.25rem 0.25rem rgb(0 0 0 / 25%);
+  }
+
+  .end-screen__score-label {
+    font-family: tokens.$font-family-academy;
+    font-size: 2.5rem;
+    font-weight: 500;
+  }
+
+  .end-screen__winner-intro,
+  .end-screen__draw-intro {
+    font-family: tokens.$font-family-academy;
+    font-weight: 400;
+  }
+
+  .end-screen__winner-name {
+    color: #ffffff;
+
+    font-family: tokens.$font-family-academy;
+    font-weight: 700;
+    text-transform: none;
+  }
+
+  .end-screen__draw-title {
+    font-size: clamp(4rem, 8vw, 8rem);
+  }
+
+  .end-screen__winner-icon {
+    height: 15.625rem;
+  }
+}

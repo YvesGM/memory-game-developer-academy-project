@@ -1,0 +1,67 @@
+@use "../../abstracts/tokens" as tokens;
+
+// GAME_HEADER
+.game-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 1.5rem;
+
+    width: 100%;
+    min-height: 6.375rem;
+    padding: 1.5rem;
+
+    border-radius: var(--game-header-radius);
+    background-color: var(--game-header-background);
+
+    &__current-player {
+        display: inline-flex;
+        justify-self: center;
+
+        font-family: inherit;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1;
+
+        gap: 1.125rem;
+
+        color: var(--game-current-player-color);
+    }
+
+    &__active-player-icon {
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+
+        & img {
+            display: block;
+
+            width: 40px;
+            height: 40px;
+
+            object-fit: contain;
+        }
+    }
+}
+
+.game-page--code .game-header {
+    min-height: 3.875rem;
+    padding: 0;
+}
+
+.game-page--code .game-header__current-player {
+    gap: 0.5rem;
+    font-size: 1.625rem;
+    font-weight: 400;
+}
+
+.game-page--code .game-header__active-player-icon img {
+    width: 1.8125rem;
+    height: 1.5rem;
+}
+
+.game-page--food .game-header__current-player {
+    font-family: tokens.$font-family-food;
+    font-size: 2rem;
+    font-weight: 600;
+}
