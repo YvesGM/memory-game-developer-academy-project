@@ -1,3 +1,5 @@
+@use "../../abstracts/tokens" as tokens;
+
 .theme-preview {
     --preview-background: linear-gradient(135deg, #303131, #6d6d6d);
 

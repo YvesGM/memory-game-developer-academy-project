@@ -1,9 +1,9 @@
 @use "../abstracts/tokens" as tokens;
 
 // # END SCREEN
-@use "./end-screen/end-screen-base";
-@use "./end-screen/end-screen-code";
-@use "./end-screen/end-screen-gaming";
-@use "./end-screen/end-screen-academy";
-@use "./end-screen/end-screen-food";
-@use "./end-screen/end-screen-responsive";
+@use "./end-screens/end-screen-base";
+@use "./end-screens/end-screen-code";
+@use "./end-screens/end-screen-gaming";
+@use "./end-screens/end-screen-academy";
+@use "./end-screens/end-screen-food";
+@use "./end-screens/end-screen-responsive";

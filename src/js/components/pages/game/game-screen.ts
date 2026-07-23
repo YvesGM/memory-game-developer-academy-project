@@ -2,7 +2,7 @@
 import type { Translations } from "../../../lib/language/language-interfaces";
 import type { GameState } from "../../../lib/pages/game/game-interfaces";
 
-import { getBoardConfig } from "../../../lib/pages/game/game-board-constants";
+import { getBoardConfig } from "../../../components/pages/game/game-board";
 import { renderExitGameDialog } from "./game-exit-dialog";
 import { renderGameBoard } from "../../../pages/game/game-board-view";
 import { renderGameHeader } from "./game-header";

@@ -5,7 +5,7 @@ import type { GameSettings } from "../settings/settings-interfaces";
 
 import { isBoardSize, isGameTheme, isPlayerId } from "../../../pages/settings/settings-guards";
 import { createInitialGameState } from "../../../pages/game/game-state";
-import { getBoardConfig } from "./game-board-constants";
+import { getBoardConfig } from "../../../components/pages/game/game-board";
 import { GAME_STATE_STORAGE_KEY } from "./game-constants";
 
 // ------------ FUNCTIONS ------------//
