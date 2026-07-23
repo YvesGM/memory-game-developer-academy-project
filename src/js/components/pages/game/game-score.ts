@@ -1,7 +1,6 @@
 // ------------ IMPORTS ------------//
 import type { Translations } from "../../../lib/language/language-interfaces";
-import type { GameState } from "../../../lib/pages/game/game-interfaces";
-import type { PlayerAssets } from "./assets/game-player-assets";
+import type { GameState, PlayerAssets } from "../../../lib/pages/game/game-interfaces";
 
 // ------------ FUNCTIONS ------------//
 
