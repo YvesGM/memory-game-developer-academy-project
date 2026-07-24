@@ -1,33 +1,45 @@
 # Memory Game
-Ein responsives Memory-Spiel, das im Rahmen der Developer Akademie umgesetzt wird.
-Das Projekt basiert auf TypeScript, Vite und SCSS. Spieler können zwischen verschiedenen Themes, Spielfeldgrößen und Startspielern wählen. Zusätzlich unterstützt die Anwendung Deutsch und Englisch.
+Ein responsives Memory-Spiel, das im Rahmen der Developer Akademie umgesetzt wurde.
+Das Projekt basiert auf TypeScript, Vite und SCSS. Zwei Spieler treten lokal gegeneinander an und können zwischen verschiedenen Themes, Spielfeldgrößen und Startspielern wählen. Die Anwendung unterstützt Deutsch und Englisch und speichert Einstellungen sowie laufende Spielstände im Local Storage.
 
-## Aktueller Entwicklungsstand
-Die technische Grundlage sowie die Figma-basierte Gestaltung der Home- und Settings-Seite sind abgeschlossen.
+## Projektstatus
+Das Projekt ist fertiggestellt und wurde zur Bewertung eingereicht.
 
-Aktuell umgesetzt:
-- Vite-Projekt mit TypeScript
-- SCSS-Unterstützung
-- lokale Einbindung der Schriftarten Red Rose und Almarai
-- typisierte Navigation zwischen den Seiten
-- responsive Home-Seite nach Figma-Vorlage
-- animierte Controller-Illustration auf der Home-Seite
-- responsive Settings-Seite nach Figma-Vorlage
-- technische Game-Seite zur Prüfung der übernommenen Einstellungen
+Umgesetzt wurden:
+- vollständige Spiellogik für zwei lokale Spieler
+- responsive Umsetzung nach Figma-Vorlage
+- vier unterschiedliche Spiel-Themes
+- drei verschiedene Spielfeldgrößen
+- Kartenmischung und dynamische Board-Erstellung
+- animiertes Aufdecken und Zurückdrehen der Karten
+- Punktevergabe und Spielerwechsel
+- Erkennung von passenden Kartenpaaren
+- Game-over-Auswertung
+- Gewinner- und Unentschieden-Anzeige
+- Neustart einer abgeschlossenen Runde
+- Exit-Game-Dialog
+- Speicherung und Wiederherstellung laufender Spiele
 - Deutsch-/Englisch-Umschaltung
-- Speicherung der aktuellen Sprache
-- Speicherung der aktuellen Route
-- Speicherung der gewählten Spieleinstellungen
-- Auswahl des startenden Spielers
-- Auswahl der Spielfeldgröße
-- Auswahl des Themes
-- dynamische Theme-Vorschau
-- dynamischer Wechsel des Spieler-Icons in der Vorschau
-- dynamische Zusammenfassung der aktuellen Auswahl
-- zentrale Verwaltung der Theme-Assets
-- zentrale Type-Guards für gespeicherte Einstellungen
+- Speicherung der Sprache, Route und Spieleinstellungen
 - TypeScript-Type-Check
 - Produktions-Build mit Vite
+
+## Funktionen
+
+### Lokaler Zwei-Spieler-Modus
+Das Spiel wird von zwei Spielern abwechselnd auf demselben Gerät gespielt.
+Der aktive Spieler wird während des Spiels angezeigt. Für beide Spieler werden die bereits gefundenen Kartenpaare beziehungsweise Punkte dargestellt.
+
+### Spielregeln
+- Pro Zug werden zwei Karten aufgedeckt.
+- Stimmen die Karten überein, erhält der aktive Spieler einen Punkt.
+- Bei einem Treffer bleibt derselbe Spieler am Zug.
+- Stimmen die Karten nicht überein, werden sie automatisch zurückgedreht.
+- Nach einem falschen Paar wechselt der aktive Spieler.
+- Während der Kartenprüfung ist das Spielfeld gesperrt.
+- Das Spiel endet, sobald alle Kartenpaare gefunden wurden.
+- Der Spieler mit den meisten Punkten gewinnt.
+- Bei gleicher Punktzahl wird ein Unentschieden angezeigt.
 
 ## Home-Seite
 Die Home-Seite wurde anhand der Figma-Vorlage umgesetzt.
@@ -35,204 +47,230 @@ Die Home-Seite wurde anhand der Figma-Vorlage umgesetzt.
 Enthalten sind:
 - responsive Überschrift
 - lokalisierter Einleitungstext
-- Play-Button
+- animierter Start-Button
 - Controller- und Pfeil-SVGs
-- animierte Hintergrundgrafik
-- dezenter Sprachumschalter
+- animierte Hintergrundillustrationen
+- Sprachumschalter
 - Unterstützung von `prefers-reduced-motion`
 
 ## Settings-Seite
-Die Settings-Seite enthält drei typisierte Auswahlgruppen:
-- Theme
+Vor dem Spiel können drei Einstellungen ausgewählt werden:
+- Spiel-Theme
 - startender Spieler
 - Spielfeldgröße
 
 Änderungen werden direkt verarbeitet und im Local Storage gespeichert.
 
-Die rechte Vorschau reagiert dynamisch auf die Auswahl:
-- das gewählte Theme verändert Farben und Motive
-- die Karten-SVGs werden ausgetauscht
-- das Spieler-Icon in der Statusleiste wird aktualisiert
-- die Zusammenfassung unterhalb der Vorschau zeigt die aktuelle Auswahl
+Die Vorschau reagiert dynamisch auf die Auswahl:
+- Farben und Motive wechseln passend zum Theme
+- die dargestellten Karten werden ausgetauscht
+- das Symbol des startenden Spielers wird aktualisiert
+- die Zusammenfassung zeigt die aktuelle Auswahl
+- der Start-Button übernimmt die ausgewählten Einstellungen
+
+## Game-Seite
+Die Game-Seite enthält:
+- Punktestand beider Spieler
+- Anzeige des aktuell aktiven Spielers
+- dynamisch erzeugtes Kartenfeld
+- animierte Karten
+- themeabhängige Kartenrückseiten und Motive
+- Markierung gefundener Kartenpaare
+- Exit-Game-Button
+- Exit-Game-Dialog
+- automatische Spielerwechsel
+- automatische Spielauswertung
+
+Während laufender Animationen und Kartenprüfungen wird das Spielfeld gesperrt, damit keine weiteren Karten ausgewählt werden können.
+
+## Ergebnisanzeige
+Nach dem letzten gefundenen Kartenpaar wird eine Ergebnisanimation gestartet.
+
+Angezeigt werden:
+- Gewinner des Spiels
+- Endpunktestand
+- Unentschieden
+- Möglichkeit zum Start einer neuen Runde
+- Möglichkeit zur Rückkehr zu den Einstellungen
 
 ## Themes
-Aktuell auswählbar sind vier Themes:
+Es stehen vier Themes zur Verfügung:
 - Coding Vibes
 - Gaming
 - Developer Academy
 - Food
 
-Die Themes besitzen jeweils eigene:
-- Vorschauhintergründe
+Jedes Theme besitzt eigene:
+- Hintergründe
+- Farben
 - Kartenmotive
-- Kartenfarben
-- Spieler-Icons
-- Exit-Icons
+- Kartenrückseiten
+- Spieler-Symbole
+- Exit-Symbole
+- Ergebnisgrafiken
+- Typografie
 - Akzentfarben
 
-Die Theme-Assets befinden sich unter:
+Die Theme-Assets befinden sich unter anderem in:
 ```text
-public/settings/theme-visuals/
-├── coding/
-├── gaming/
-├── da-projects/
-└── food/
-´´´
-
+public/
+├── game/
+├── home/
+├── results/
+└── settings/
+    └── theme-visuals/
+        ├── coding/
+        ├── gaming/
+        ├── da-projects/
+        └── food/
+```
 Spielfeldgrößen
-Aktuell auswählbar:
-4 × 4
-4 × 6
-6 × 6
 
-Zusätzlich vorgemerkt:
-6 × 8
-8 × 8
+Folgende Spielfeldgrößen sind verfügbar:
+Auswahl	Raster	Kartenpaare
+- 16 Karten	    4 × 4	8
+- 24 Karten	    4 × 6	12
+- 36 Karten 	6 × 6	18
 
-Die größeren Spielfelder werden ergänzt, wenn genügend unterschiedliche Kartenmotive aus dem Figma-Projekt vorhanden sind.
+Das Spielfeld wird abhängig von der Auswahl dynamisch erzeugt und mit zufällig gemischten Kartenpaaren befüllt.
 
-## Geplante Spielfunktionen
-- Memory-Karten aus den Figma-Assets
-- Kartenmischung passend zur Spielfeldgröße
-- Karten-Drehanimation
-- Vergleich von jeweils zwei Karten
-- Eingabesperre während der Kartenprüfung
-- automatische Rückdrehung bei einem falschen Paar
-- Punktevergabe bei einem richtigen Paar
-- Spielerwechsel nach einem falschen Paar
-- aktiver Spieler bleibt nach einem Treffer am Zug
-- Speicherung eines laufenden Spiels
-- Wiederherstellung des Spiels nach einem Reload
-- Exit-Game-Dialog
-- Game-over-Anzeige
-- Gewinner-Anzeige
-- Unentschieden-Anzeige
-- Neustart einer Runde
-- Technologien
+## Persistierte Daten
+Die Anwendung speichert folgende Informationen im Local Storage:
+- aktuelle Sprache
+- aktuelle Route
+- gewähltes Theme
+- gewählte Spielfeldgröße
+- gewählter Startspieler
+- aktiver Spieler
+- Punktestand
+- Kartenstatus
+- bereits gefundene Kartenpaare
+- Zustand eines laufenden Spiels
+
+Ein begonnenes Spiel kann nach dem Neuladen der Seite fortgesetzt werden.
+Instabile Zwischenzustände während einer laufenden Kartenanimation werden nicht als dauerhafter Spielstand gespeichert.
+
+## Technische Umsetzung
+Das Projekt wurde ohne Frontend-Framework umgesetzt.
+
+Die Anwendung verwendet eine modulare TypeScript-Struktur mit getrennten Verantwortlichkeiten für:
+- Rendering
+- Routing
+- Spiellogik
+- DOM-Animationen
+- Zustandsverwaltung
+- Persistenz
+- Übersetzungen
+- Spieleinstellungen
+- Ergebnisanzeige
+- Dialogsteuerung
+
+Der zentrale App-Kontext hält den aktuellen Zustand der Anwendung. Änderungen am Spielzustand werden über reine Zustandsfunktionen verarbeitet und anschließend gespeichert beziehungsweise neu gerendert.
+
+## Technologien
 - HTML5
 - TypeScript
 - SCSS
 - Vite
 - Node.js
 - Local Storage
-- SVG-Assets
+- SVG- und Bild-Assets
 - Fontsource
-- Projekt starten
+- Projektstruktur
 
-Abhängigkeiten installieren:
-npm install
-
-Entwicklungsserver starten:
-npm run dev
-
-TypeScript prüfen:
-npm run type-check
-
-Produktions-Build erstellen:
-npm run build
-
-Der fertige Build wird im Ordner dist erzeugt.
-
-Produktions-Build lokal testen:
-npm run preview
-Persistierte Daten
-
-Die Anwendung speichert aktuell folgende Informationen im Local Storage:
-- aktuelle Sprache
-- aktuelle Seite
-- gewähltes Theme
-- gewählte Spielfeldgröße
-- gewählter Startspieler
-
-Änderungen der Spieleinstellungen werden unmittelbar nach der Auswahl gespeichert.
-
-In Phase 3 wird zusätzlich der vollständige Zustand eines laufenden Spiels gespeichert.
-
+Die folgende Darstellung zeigt die wichtigsten Bereiche des Projekts:
 ```
-Projektstruktur
 public/
+├── game/
 ├── home/
-│   ├── home-arrow.svg
-│   ├── home-controller-icon.svg
-│   └── home-controller.svg
-│
+├── results/
 └── settings/
-    ├── chess-pawn-icon.svg
-    ├── palette.svg
-    ├── start-icon.svg
-    ├── style-icon.svg
     └── theme-visuals/
-        ├── coding/
-        ├── gaming/
-        ├── da-projects/
-        └── food/
-
 src/
+├── app/
+│   ├── app-dom.ts
+│   └── app-renderer.ts
+│
 ├── assets/
 │   └── scss/
 │       ├── abstracts/
-│       │   └── _tokens.scss
-│       │
 │       ├── base/
-│       │   └── _global.scss
-│       │
 │       ├── components/
-│       │   ├── _language-switch.scss
-│       │   ├── _primary-button.scss
-│       │   ├── _settings-options.scss
-│       │   ├── _settings-summary.scss
-│       │   └── _theme-preview.scss
-│       │
 │       ├── pages/
-│       │   ├── _home-page.scss
-│       │   └── _settings-page.scss
-│       │
 │       └── main.scss
 │
-├── js/
-│   ├── components/
-│   │   ├── settings/
-│   │   │   ├── settings-options.ts
-│   │   │   ├── settings-summary.ts
-│   │   │   └── theme-preview.ts
-│   │   │
-│   │   └── language-switch.ts
-│   │
-│   ├── language/
-│   │   ├── language-service.ts
-│   │   ├── language-types.ts
-│   │   └── translations.ts
-│   │
-│   ├── router/
-│   │   ├── app-router.ts
-│   │   └── router-types.ts
-│   │
+├── components/
+│   ├── game/
+│   ├── home/
+│   ├── results/
 │   └── settings/
-│       ├── game-setting-guards.ts
-│       ├── game-setting-interfaces.ts
-│       ├── game-setting-storage.ts
-│       ├── game-setting-types.ts
-│       ├── game-settings-form.ts
-│       ├── game-settings.ts
-│       └── theme-preview-config.ts
+│
+├── controllers/
+│   └── game/
+│       ├── card-dom.ts
+│       ├── game-card-controller.ts
+│       ├── game-exit-controller.ts
+│       ├── game-result-controller.ts
+│       ├── game-state.ts
+│       └── pair-evaluation-controller.ts
+│
+├── language/
+│   ├── language-interfaces.ts
+│   ├── language-service.ts
+│   └── translations.ts
+│
+├── lib/
+│   ├── app/
+│   ├── pages/
+│   │   ├── game/
+│   │   └── settings/
+│   └── router/
 │
 ├── pages/
 │   ├── game-page.ts
 │   ├── home-page.ts
+│   ├── result-page.ts
 │   └── settings-page.ts
+│
+├── router/
+│   ├── app-router.ts
+│   ├── route-controller.ts
+│   └── route-storage.ts
 │
 └── init.ts
 ```
 
-Die Struktur wird nur erweitert, wenn neue Verantwortlichkeiten tatsächlich benötigt werden.
+Die einzelnen Module sind nach Verantwortlichkeiten getrennt. UI-Rendering, Spiellogik und Datenpersistenz werden nicht innerhalb derselben Funktionen vermischt.
+
+## Projekt lokal starten
+
+### Voraussetzungen
+- Benötigt werden:
+- Node.js
+- npm
+- Abhängigkeiten installieren
+- npm install
+- Entwicklungsserver starten
+- npm run dev
+- TypeScript prüfen
+- npm run type-check
+- Produktions-Build erstellen
+- npm run build
+
+Der fertige Build wird im Ordner dist erzeugt.
+
+## Produktions-Build lokal testen
+- npm run preview
 
 ## Entwicklungsphasen
 
 ### Phase 1 – Technische Grundlage
 Abgeschlossen:
 - Projektinitialisierung
-- TypeScript- und SCSS-Konfiguration
-- Navigation
+- Vite- und TypeScript-Konfiguration
+- SCSS-Struktur
+- App-Kontext
+- Navigation und Routing
 - Lokalisierung
 - Settings-Modell
 - Local-Storage-Persistenz
@@ -242,38 +280,42 @@ Abgeschlossen:
 Abgeschlossen:
 - Home-Seite nach Figma
 - Settings-Seite nach Figma
-- Figma-Farben
-- Typografie
+- Game-Seite nach Figma
+- Ergebnisanzeige nach Figma
 - responsive Layouts
-- Buttons
+- Typografie
 - SVG-Illustrationen
-- dynamische Theme-Darstellungen
+- Theme-spezifische Darstellungen
 - dynamische Spieleranzeige
-- zentrale Theme-Asset-Konfiguration
-- lokalisierte Settings-Inhalte
+- zentrale Asset-Konfiguration
 
 ### Phase 3 – Spiellogik
-Geplant:
-- Board-Erstellung
+Abgeschlossen:
+- dynamische Board-Erstellung
 - Kartenmischung
 - Karten-Drehanimation
 - Matching-Logik
-- Eingabesperre während der Prüfung
+- Eingabesperre
 - Spielerzustand
 - Punktevergabe
 - Spielerwechsel
+- Trefferlogik
+- Spielende-Erkennung
 - Exit-Game-Dialog
-- Game-over-Zustand
 - Gewinner- und Unentschieden-Anzeige
 - Persistenz laufender Spiele
 
-### Phase 4 – Deployment
-Geplant:
-- Deployment auf All-Inkl
-- GitHub-Actions-Workflow
-- automatischer Produktions-Build
-- automatischer FTP- oder FTPS-Upload
-- Deployment in die Portfolio-Projektstruktur
+### Phase 4 – Finalisierung
+Abgeschlossen:
+- responsive Anpassungen
+- themeabhängige Darstellung
+- Animationen
+- zentrale SCSS-Komponenten
+- Refactoring der TypeScript-Module
+- Fehlerbehebungen
+- TypeScript-Type-Check
+- Produktions-Build
+- Projektabgabe
 
 ## Autor
 Entwickler: Yves Gildemeister
